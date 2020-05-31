@@ -1,6 +1,6 @@
 <template>
 <div id="page-content">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
         <div class="container">
             <div class="col">
                 <h2 class="text-dark">
@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <img src="../../public/homeimg.jpg" class="img-thumbnail" alt="Responsive image">      
+                <img src="../../public/homeimg.png" class="img-thumbnail border border-light" alt="Responsive image">      
             </div>
             <div class="col">
                 <div class="card animated pulse">

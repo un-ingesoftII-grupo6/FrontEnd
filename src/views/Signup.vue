@@ -1,6 +1,6 @@
 <template>
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
         <div class="container">
             <div class="col">
                 <h2 class="text-dark">
