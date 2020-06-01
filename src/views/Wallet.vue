@@ -39,7 +39,7 @@
                 <br>
                 <!--Here start second card -->
                 <div class="card">
-                    <h5 class="card-header text-dark bg-light "><i class="fas fa-dollar-sign"></i> Make a Transfer</h5>
+                    <h5 class="card-header text-dark bg-light "><i class="fas fa-dollar-sign"></i> Make Transfer</h5>
                     <div class="card-body">
                         <h5 class="card-title">Easy and Fast</h5>
                         <p class="card-text">Seen money card example here we can put 
@@ -53,7 +53,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-dark bg-light">                        
-                        <h5><i class="fas fa-history"></i> Transaction history<span class="float-right"><a href="/Operations" class="btn btn-dark">Operations</a></span></h5>                                                  
+                        <h5><i class="fas fa-history"></i> Transaction History<span class="float-right"><a href="/Operations" class="btn btn-dark">Operations</a></span></h5>                                                  
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"></h5>

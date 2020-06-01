@@ -7,7 +7,7 @@ import Welcome from "./views/Welcome";
 import Support from "./views/Support";
 import MakeTransfer from "./views/Make-transfer";
 import Operations from "./views/Operations";
-import WalletEnterprise from "./views/WalletEnterprise";
+import WalletEnterprise from "./views/Wallet-enterprise";
 
 Vue.use(Router);
 
@@ -51,7 +51,7 @@ export default new Router({
       component: Operations
     },
     {
-      path: "/WalletEnterprise",
+      path: "/Wallet-enterprise",
       name: "walletEnterprise",
       component: WalletEnterprise
     }
