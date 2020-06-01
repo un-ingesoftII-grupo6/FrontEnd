@@ -60,7 +60,7 @@
                         <p class="card-text"></p>
                         <div v-if="this.movement.wallets[0].modifies_recipient !== null">
                             <ul id="modifies-recipient">
-                                <h5>Recived</h5>
+                                <h5>Received</h5>
                                 <li v-for="item in movement.wallets[0].modifies_recipient" :key="item.Mov_timestamp">
                                     {{ item.Mov_timestamp }}
                                 </li>

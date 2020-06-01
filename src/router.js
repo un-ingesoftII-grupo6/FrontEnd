@@ -4,6 +4,7 @@ import Signup from "./views/Signup";
 import Login from "./views/Login";
 import Wallet from "./views/Wallet";
 import Welcome from "./views/Welcome";
+import Support from "./views/Support";
 import MakeTransfer from "./views/Make-transfer";
 import WalletEnterprise from "./views/WalletEnterprise";
 
@@ -32,6 +33,11 @@ export default new Router({
       path: "/Welcome",
       name: "welcome",
       component: Welcome
+    },
+    {
+      path: "/Support",
+      name: "support",
+      component: Support
     },
     {
       path: "/Make-transfer",
