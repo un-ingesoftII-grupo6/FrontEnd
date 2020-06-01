@@ -1,87 +1,159 @@
 <template>
-
 <div>
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <div class="container">
-        <div class="col">
-            <h2 class="text-primary">
-                <a href="/"><i class="fas fa-wallet"></i> UN Wallet</a>
-                <span class="float-right">
-                    <i class="fas fa-user"></i> <!--%= name + ' ' + lastName %-->
-                </span>
-            </h2>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+        <div class="container">
+            <div class="col">
+                <h2 class="text-dark">
+                    <a class="text-dark" href="/Welcome"><i class="fas fa-wallet"></i> UN Wallet</a>
+                    <span class="float-right">
+                        <!--i class="fas fa-user"></i> <%= name + ' ' + lastName %-->
+                        {{this.user.user.Usr_name}}
+                        <a href="/Welcome" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>
+                  
+                    </span>
+                </h2>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+    <br>
 
-<!--2cards same row -->
-<div class="container">
-    <div class="row pt-6">
-        <div class="col-md-5">
+    <!--2cards same row -->
+    <div class="container">
+        <div class="row pt-6">
+            <div class="col-md-5">
                 <!--Here start firstcard -->
-            <div class="card animated pulse">
+                <div class="card animated pulse">
+                    <div class="card">
+                        <div class="card-header text-dark bg-light" id="walletID" data-clipboard-action="copy" data-clipboard-target="#walletID">
+                            {{this.wallet.wallets[0].Wal_id}}
+                            <span class="float-right">
+                                <button id="button" type="#" class="btn btn-dark btn-sm" data-clipboard-action="copy" data-clipboard-target="#walletID">Copy</button>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-balance-scale"></i> Balance</h5>
+                            <p class="card-text">${{this.wallet.wallets[0].Wal_balance}}</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <!--Here start second card -->
                 <div class="card">
-                    <div class="card-header text-white bg-info" id="walletID" data-clipboard-action="copy" data-clipboard-target="#walletID">
-                        <!--%= wallet_user.id_wallet %-->
-                        <span class="float-right">
-                            <button type="#" class="btn btn-dark btn-sm" data-clipboard-action="copy" data-clipboard-target="#walletID">Copy</button>
-                        </span>
+                    <h5 class="card-header text-dark bg-light "><i class="fas fa-dollar-sign"></i> Make a Transfer</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">Easy and Fast</h5>
+                        <p class="card-text">Seen money card example here we can put 
+                            the max monay that can send a wallet_user attention for type wallet</p>
+                        <a href="/Make-transfer" class="btn btn-dark">Send</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--second card second row -->
+            <div class="col">
+                <div class="card">
+                    <div class="card-header text-dark bg-light">                        
+                        <h5><i class="fas fa-history"></i> Transaction history<span class="float-right"><button class="btn btn-dark">Operations</button></span></h5>                                                  
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">History</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"></p>
+                        <div v-if="this.movement.wallets[0].modifies_recipient !== null">
+                            <ul id="modifies-recipient">
+                                <h5>Received</h5>
+                                <li v-for="item in movement.wallets[0].modifies_recipient" :key="item.Mov_timestamp">
+                                    {{ item.Mov_timestamp }}
+                                </li>
+                            </ul>
+                        </div>
+                        <div v-if="this.movement.wallets[0].modifies_sender !== null">
+                            <ul id="modifies_sender">
+                                <h5>Sent</h5>
+                                <li v-for="item in movement.wallets[0].modifies_sender" :key="item.Mov_timestamp">
+                                    {{ item.Mov_timestamp }}
+                                </li>
+                            </ul>
+                        </div>
+                        <div v-if="this.movement.wallets[0].modifies_recipient === this.movement.wallets[0].modifies_sender === null">
+                            You don't have any movements
+                        </div>
                     </div>
                 </div>
             </div>
-            <br>
-            <!--Here start second card -->
-            <div class="card">
-                <h5 class="card-header text-white bg-info ">Make a Transfer</h5>
-                <div class="card-body">
-                    <h5 class="card-title">Easy and Fast</h5>
-                    <p class="card-text">Seen money card example here we can put 
-                        the max monay that can send a wallet_user attention for type wallet</p>
-                    <a href="#" class="btn btn-dark">Send</a>
-                </div>
-            </div>
         </div>
-
-        <!--second card second row -->
-        <div class="col">
-            <div class="card">
-                <div class="card-header text-white bg-info">                        
-                    <h5>Transaction history<span class="float-right"><button class="btn btn-dark">Operations</button></span></h5>                                                  
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text"></p>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-
-                </div>
-            </div>
-        </div>
+        <br>
     </div>
-    <br>
 </div>
-
-<partial name="footer"></partial> 
-</div>
-
 </template>
 
 <script>
+import axios from 'axios';
+import clipboard from 'clipboard';
+
+new clipboard('#button');
+
 export default {
-    name: "Wallet"
+    name: "Wallet",
+    data(){
+        return {
+            user: null,
+            wallet: null,
+            movement: null,
+            response: null
+        }
+    },
+    beforeCreate() {
+        const pathUser = '/user/find/' + localStorage.getItem('username');
+        axios
+            .get(this.$store.state.backURL + pathUser)
+            .then(response => {
+                if(response.status !== 200) {
+                    alert("Request error");
+                } else {
+                    this.user = response.data;
+                }
+            }).catch(error => {
+                if(error.status === 500) {
+                    alert("Server error");
+                } else {
+                    alert("Backent conection impossible");
+                }
+            });
+        
+        const pathWallet = '/wallet/find/all/' + localStorage.getItem('username');
+        axios
+            .get(this.$store.state.backURL + pathWallet)
+            .then(response => {
+                if(response.status !== 200) {
+                    alert("Request error");
+                } else {
+                    this.wallet = response.data;
+                }
+            }).catch(error => {
+                if(error.status === 500) {
+                    alert("Server error");
+                } else {
+                    alert("Backent conection impossible");
+                }
+            });
+
+            const pathMovement = '/movement/find/all/' + localStorage.getItem('username');
+        axios
+            .get(this.$store.state.backURL + pathMovement)
+            .then(response => {
+                if(response.status !== 200) {
+                    alert("Request error");
+                } else {
+                    this.movement = response.data;
+                }
+            }).catch(error => {
+                if(error.status === 500) {
+                    alert("Server error");
+                } else {
+                    alert("Backent conection impossible");
+                }
+            });
+    } 
 }
 </script>
 

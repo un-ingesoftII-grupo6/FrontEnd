@@ -5,11 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title>UN Wallet</title>
+
+    <!-- Boostrap Framework -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- clipboard.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/6e64c61c74.js" crossorigin="anonymous"></script>
+    <!-- Animated login -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <!-- CSS modules -->
+    <link rel="stylesheet" href="/css/main.css">
+
   </head>
-  <body>
+
+  <body class="d-flex flex-column">
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
@@ -17,7 +28,10 @@
     <!-- built files will be auto injected -->
     <footer-component></footer-component>
   </body>
-  <footer class = "row bg-#2980C9 text-white text-center">
-    
+
+  <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; UN Wallet</small>
+    </div>
   </footer>
 </html>
