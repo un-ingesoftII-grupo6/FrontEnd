@@ -4,7 +4,7 @@
         <div class="container">
             <div class="col">
                 <h2 class="text-dark">
-                    <a class="text-dark" href="/Wallet"><i class="fas fa-wallet"></i> UN Wallet</a>
+                    <a class="text-dark" href="/Wallet-enterprise"><i class="fas fa-wallet"></i> UN Wallet</a>
                     <span class="float-right">
                         <a href="/Welcome" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>                       
                     </span>

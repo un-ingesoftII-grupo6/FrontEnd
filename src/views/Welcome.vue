@@ -34,7 +34,7 @@
                                 <li>Save time with UNWallet</li>
                                 <li>Fast and secure transactions</li>
                                 <li>Make payments to merchants and banks</li>
-                                <li>mmediate availability of your money</li>                                              
+                                <li>Immediate availability of your money</li>                                              
                                 <li>Money on hand without cash</li>                            
                             </ul>
                         </div> 
