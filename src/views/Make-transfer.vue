@@ -125,13 +125,11 @@ export default {
                         if(response.status !== 201) {
                             alert("Transfer storage error");
                         } else {
-                            alert("transfer done correctly");
+                            alert("Movement done correctly");
                         }
                     }).catch( error =>{
-                        if( error.response.status === 400 ){
-                            alert( "Route can't contain spaces" );
-                        }else{
-                            alert(error.error.message);
+                        if( error.response.status !== 201 ){
+                            alert(error.response.data);
                         }
                     });
                 event.preventDefault( );
