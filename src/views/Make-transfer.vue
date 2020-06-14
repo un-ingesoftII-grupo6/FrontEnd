@@ -8,7 +8,7 @@
                     <span class="float-right">
                         <!--i class="fas fa-user"></i> <%= name + ' ' + lastName %-->
                         {{this.user.user.Usr_name}}
-                        <a v-on:click="localStorage.setItem('username', null)" href="/Welcome" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>                    
+                        <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>                    
                     </span>
                 </h2>
             </div>

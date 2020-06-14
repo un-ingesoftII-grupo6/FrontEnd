@@ -1,27 +1,15 @@
 <template>
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <div class="container">
-            <div class="col">
-                <h2 class="text-dark">
-                    <a class="text-dark" href="/welcome"><i class="fas fa-wallet"></i> UN Wallet</a>
-                    <span class="float-right">
-                        <i class="fas fa-user"></i> <!--%= name + ' ' + lastName %-->                    
-                    </span>
-                </h2>
-            </div>
-        </div>
-    </nav>
+    <NavBar/>
     <br>
+    
     <div class="container p-4">
         <div class="row ">
             <div class="col -md-4"></div>
             <div class="col -md-4">
                 <div class="card animated flipInY">
                     <div class="card-header bg-light text-dark text-center">
-                        <h3>
-                            Log in
-                        </h3>
+                        <h3>Log in</h3>
                     </div>
                     <div class="card-body">
                         <form @submit="login">
@@ -54,15 +42,20 @@
 
 <script>
     import axios from 'axios';
+    import NavBar from "../components/NavBar.vue"
 
     const path = "/user/login";
     
     export default {
         name: "Login",
+        components: {
+            NavBar
+        },
         data(){
             return {
                 username: '',
-                password: '',                
+                password: '',
+                user: null,                
                 response: null
             }
         },
@@ -79,7 +72,12 @@
                         alert("Authentication error");
                     } else {
                         localStorage.setItem('username', this.username);
-                        this.$router.push( {name: 'wallet'});
+                        if(response.data.user.possess[0].Wtyp_id !== 2){
+                            this.$router.push( {name: 'wallet'});
+                        } else {
+                            this.$router.push( {name: 'walletEnterprise'});
+                        }
+                        
                     }
                 }).catch(error => {
                     if(error.response.status === 400) {

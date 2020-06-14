@@ -1,17 +1,6 @@
 <template>
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <div class="container">
-            <div class="col">
-                <h2 class="text-dark">
-                    <a class="text-dark" href="/welcome"><i class="fas fa-wallet"></i> UN Wallet</a>
-                    <!--span class="float-right">
-                        <i class="fas fa-user"></i> <%= name + ' ' + lastName %>                    
-                    </span-->
-                </h2>
-            </div>
-        </div>
-    </nav>
+    <NavBar/>
     <br>
 
     <div class="container p-3">
@@ -88,11 +77,15 @@
 
 <script>
     import axios from 'axios'
+    import NavBar from "../components/NavBar.vue"
 
     const path = '/user/signup';
 
     export default {
         name: "Signup",
+        components: {
+            NavBar
+        },
         data( ){
             return{
                 name: '',

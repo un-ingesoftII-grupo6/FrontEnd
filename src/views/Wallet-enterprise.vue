@@ -6,7 +6,7 @@
                 <h2 class="text-dark">
                     <a class="text-dark" href="/Wallet-enterprise"><i class="fas fa-wallet"></i> UN Wallet</a>
                     <span class="float-right">
-                        <a href="/Welcome" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>                       
+                        <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>                       
                     </span>
                 </h2>
             </div>

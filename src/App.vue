@@ -1,8 +1,13 @@
 <template>
 <div id="app">
-    <div class="container">
+  <v-app>
     <router-view></router-view>
-    </div>
+    <v-footer id ="footer" class="py-4 bg-dark text-white-50" padless>
+      <v-row justify="center" no-gutters>
+        <strong>Copyright &copy; UN Wallet</strong>
+      </v-row>
+    </v-footer>
+  </v-app>
 </div>
 </template>
 
@@ -13,18 +18,12 @@ export default {
 </script>
 
 <style>
-html,
+@import url("https://fonts.googleapis.com/css?family=Big+Shoulders+Display:600&display=swap");
 
-body {
-  height: 100%;
-}
+html,
 
 #page-content {
   flex: 1 0 auto;
-}
-
-#sticky-footer {
-  flex-shrink: none;
 }
 
 body {
@@ -32,9 +31,14 @@ body {
   background: linear-gradient(to right, #0062E6, #33AEFF)
 }
 
-footer {
-  position: absolute;
+#app{
+  height: 100%;
+}
+
+#footer {
+  position: fixed;
   bottom: 0;
   width: 100%;
+  text-align: center;
 }
 </style>
