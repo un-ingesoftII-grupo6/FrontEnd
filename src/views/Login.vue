@@ -72,12 +72,15 @@
                         alert("Authentication error");
                     } else {
                         localStorage.setItem('username', this.username);
-                        if(response.data.user.possess[0].Wtyp_id !== 2){
-                            this.$router.push( {name: 'wallet'});
+                        if(typeof(response.data.user) === "object") {
+                            if(response.data.user.possess[0].Wtyp_id !== 2){
+                                this.$router.push( {name: 'wallet'});
+                            } 
                         } else {
-                            this.$router.push( {name: 'walletEnterprise'});
+                            if(response.data.enterprise !== null) {
+                                this.$router.push( {name: 'walletEnterprise'});
+                            }
                         }
-                        
                     }
                 }).catch(error => {
                         if( error.response.status !== 201 ){
