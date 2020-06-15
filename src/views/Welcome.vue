@@ -1,16 +1,14 @@
 <template>
 <div id="page-content">
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <div class="container">
-            <div class="col">
-                <h2 class="text-dark">
-                    <a class="text-dark" href="/welcome"><i class="fas fa-wallet"></i> UN Wallet</a>
-                    <span class="float-right">
-                        <a href="/Login" class="btn btn-dark">Log in</a>
-                        <a href="/Signup" id="button" class="btn btn-dark">Sign up</a>
-                    </span>
-                </h2>
-            </div>
+        <div class="col">
+            <h2 class="text-dark">
+                <a class="text-dark" href="/"><i class="fas fa-wallet"></i> UN Wallet</a>
+                <span class="float-right">
+                    <a href="/Login" class="btn btn-dark">Log in</a>
+                    <a href="/Signup" id="button" class="btn btn-dark">Sign up</a>
+                </span>
+            </h2>
         </div>
     </nav>
     <br>

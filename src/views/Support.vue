@@ -4,7 +4,7 @@
         <div class="container">
             <div class="col">
                 <h2 class="text-dark">
-                    <a class="text-dark" href="/welcome"><i class="fas fa-wallet"></i> UN Wallet</a>
+                    <a class="text-dark" href="/"><i class="fas fa-wallet"></i> UN Wallet</a>
                     <span class="float-right">
                         <i class="fas fa-user"></i> <!--%= name + ' ' + lastName %-->                    
                     </span>

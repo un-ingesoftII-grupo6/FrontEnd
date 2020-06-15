@@ -1,35 +1,23 @@
 <template>
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-            <div class="container">
-                <div class="col">
-                    <h2 class="text-dark">
-                        <a class="text-dark" href="/welcome"><i class="fas fa-wallet"></i> UN Wallet</a>
-                        <!--span class="float-right">
-                            <i class="fas fa-user"></i> <%= name + ' ' + lastName %>                    
-                        </span-->
-                    </h2>
-                </div>
-            </div>
-        </nav>
-        <br>
-    
-        <div class="container p-3">
-            <div class="row">
-                <div class="col -md-0 offset -md-0">
-                    <div class="card animated flipInY">
-                        <div class="card-header bg-light text-dark">
-                            <h3>Sign up</h3>
-                        </div>
-                        <div class="card-body">
-                            <form @submit="signUp">
-                                <div class="form-row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="inputName">Name</label>
-                                            <input name="name" id="inputName" type="text" class="form-control" placeholder="Name"
-                                                v-model="name" required/>
-                                        </div>
+<div>
+    <NavBar/>
+    <br>
+
+    <div class="container p-3">
+        <div class="row">
+            <div class="col -md-0 offset -md-0">
+                <div class="card animated flipInY">
+                    <div class="card-header bg-light text-dark">
+                        <h3>Sign up</h3>
+                    </div>
+                    <div class="card-body">
+                        <form @submit="signUp">
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="inputName">Name</label>
+                                        <input name="name" id="inputName" type="text" class="form-control" placeholder="Name"
+                                            v-model="name" required/>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
@@ -84,30 +72,37 @@
             </div>
         </div>
     </div>
-    </template>
-    
-    <script>
-        import axios from 'axios'
-        const path = '/user/signup';
-        export default {
-            name: "Signup",
-            data( ){
-                return{
-                    name: '',
-                    surname: '',
-                    email: '',
-                    username: '',
-                    password: '',
-                    cPassword: '',
-                    response: null
-                }
-            },
-            methods: {
-                signUp(event) {
-                   /* if(this.password !== this.cPassword){
+</div>
+</template>
+
+<script>
+    import axios from 'axios'
+    import NavBar from "../components/NavBar.vue"
+
+    const path = '/user/signup';
+
+    export default {
+        name: "Signup",
+        components: {
+            NavBar
+        },
+        data( ){
+            return{
+                name: '',
+                surname: '',
+                email: '',
+                username: '',
+                password: '',
+                cPassword: '',
+                response: null
+            }
+        },
+        methods: {
+            signUp(event) {
+                if(this.password !== this.cPassword){
                         event.preventDefault( );
                         return;
-                    }*/
+                    }
                     axios
                         .post(this.$store.state.backURL + path,
                             {

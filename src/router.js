@@ -31,7 +31,7 @@ export default new Router({
       component: Wallet,
     },
     {
-      path: "/Welcome",
+      path: "/",
       name: "welcome",
       component: Welcome
     },
