@@ -19,54 +19,54 @@
                                         <input name="name" id="inputName" type="text" class="form-control" placeholder="Name"
                                             v-model="name" required/>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="inputLastName">Last Name</label>
-                                        <input name="lastName" id="inputLastName" type="text" class="form-control"
-                                            placeholder="Last Name" v-model="surname" required/>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="inputLastName">Last Name</label>
+                                            <input name="lastName" id="inputLastName" type="text" class="form-control"
+                                                placeholder="Last Name" v-model="surname" required/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="inputEmail">Email</label>
-                                        <input name="email" id="inputEmail" type="email" class="form-control"
-                                            placeholder="Email" v-model="email" required/>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="inputEmail">Email</label>
+                                            <input name="email" id="inputEmail" type="email" class="form-control"
+                                                placeholder="Email" v-model="email" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col">    
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input name="username" id="username" type="text" class="form-control" placeholder="Username" v-model="username" required/>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">    
-                                    <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input name="username" id="username" type="text" class="form-control" placeholder="Username" v-model="username" required/>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="confirmPassword">Confirm Password</label>
+                                            <input name="confirmPassword" id="confirmPassword" type="password" class="form-control"
+                                                placeholder="Confirm Pasword" v-model="cPassword" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="inputPassword">Password</label>
+                                            <input name="password" id="inputPassword" type="password" class="form-control"
+                                                placeholder="Password" v-model="password" required/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="confirmPassword">Confirm Password</label>
-                                        <input name="confirmPassword" id="confirmPassword" type="password" class="form-control"
-                                            placeholder="Confirm Pasword" v-model="cPassword" required/>
+    
+                                <div class="form-group">
+                                    <div>
+                                        <input id="button1" type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">
+                                        <input id="button2" type="submit" value="Submit" class="btn btn-dark">
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="inputPassword">Password</label>
-                                        <input name="password" id="inputPassword" type="password" class="form-control"
-                                            placeholder="Password" v-model="password" required/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div>
-                                    <input id="button1" type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">
-                                    <input id="button2" type="submit" value="Submit" class="btn btn-dark">
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,45 +100,41 @@
         methods: {
             signUp(event) {
                 if(this.password !== this.cPassword){
+                        event.preventDefault( );
+                        return;
+                    }
+                    axios
+                        .post(this.$store.state.backURL + path,
+                            {
+                                name: this.name.trim(),
+                                surname: this.surname.trim(),
+                                email: this.email.trim(),
+                                username: this.username.trim(),
+                                password: this.password,
+                                cpassword: this.cPassword
+                            }
+                        ).then(response => {
+                            if(response.status !== 201) {
+                                alert("User storage error");
+                            } else {
+                                alert("Correctly registered user");
+                            }
+                        }).catch( error =>{
+                            alert(error.response.data);
+                        });
                     event.preventDefault( );
-                    return;
+                    return true;
                 }
-                axios
-                    .post(this.$store.state.backURL + path,
-                        {
-                            name: this.name.trim(),
-                            surname: this.surname.trim(),
-                            email: this.email.trim(),
-                            username: this.username.trim(),
-                            password: this.password
-                        }
-                    ).then(response => {
-                        if(response.status !== 201) {
-                            alert("User storage error");
-                        } else {
-                            alert("Correctly registered user");
-                        }
-                    }).catch( error =>{
-                        if( error.response.status === 400 ){
-                            alert( "User \"" + this.username + "\" already exist" );
-                        }else{
-                            alert("This username is already in use");
-                        }
-                    });
-                event.preventDefault( );
-                return true;
             }
         }
+    </script>
+    
+    <style>   
+    #button1 {
+        margin-top: .8em;
     }
-</script>
-
-<style>   
-#button1 {
-    margin-top: .8em;
-}
-
-#button2 {
-    margin-top: .8em;
-    margin-left: .8em;
-}
-</style>
+    #button2 {
+        margin-top: .8em;
+        margin-left: .8em;
+    }
+    </style>

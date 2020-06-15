@@ -23,9 +23,9 @@
                             </div>
                             <div class="form-group">
                                 <br>
-                                <div>
-                                    <input type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">
-                                    <input  id="button" type="submit" value="Submit" class="btn btn-dark">
+                                <div class="form-group">
+                                    <input id="button1" type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">
+                                    <input  id="button2" type="submit" value="Submit" class="btn btn-dark">
                                 </div>
                             </div>
                         </form>
@@ -80,15 +80,9 @@
                         
                     }
                 }).catch(error => {
-                    if(error.response.status === 400) {
-                        alert("Bad credentials");
-                    } else if(error.response.status === 401){
-                        alert("The password is incorrect");
-                    } else if(error.response.status === 404) {
-                        alert("This username does not exist in the database");
-                    } else {
-                        alert("Server comunication error");
-                    }
+                        if( error.response.status !== 201 ){
+                            alert(error.response.data);
+                        }
                 });
                 event.preventDefault();
                 return true;
@@ -98,8 +92,12 @@
 </script>
 
 <style>
-#button {
-    margin-left: .8em;
-}
+    #button1 {
+        margin-top: .8em;
+    }
 
+    #button2 {
+        margin-top: .8em;
+        margin-left: .8em;
+    }
 </style>
