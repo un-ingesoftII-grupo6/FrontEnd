@@ -1,18 +1,8 @@
 <template>
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <div class="col">
-                <h2 class="text-dark">
-                    <a class="text-dark" href="/Wallet-enterprise"><i class="fas fa-wallet"></i> UN Wallet</a>
-                    <span class="float-right">
-                        <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>                       
-                    </span>
-                </h2>
-            </div>
-        </div>
-    </nav>
+    <nav-bar-wallet :username="this.enterprise.enterprise.Ent_name" :linkProp="this.link"/>
     <br>
+
     <!--Select scroll need update -->
     <div class="container p-2">
     <select v-model="selected">
@@ -46,8 +36,6 @@
                             <br>
                             <br>
                             <br>
-                            <br>
-                            <br>
                         </div>
                     </div>
                 </div>
@@ -57,26 +45,15 @@
                         <div class="card">
                             <div class="card-header text-dark bg-light" >
                                 <span class="float-left">
-                                    <h5 class="card-title"><i class="fas fa-balance-scale"></i>  Total Balance</h5>
+                                    <h5 class="card-title"><i class="fas fa-balance-scale"></i> Total Balance</h5>
                                 </span>
                             </div>
                             <div class="card-body">
-                                BALANCE ASIGNADO                             
+                                <p class="card-text">${{ this.enterprise.enterprise.Ent_budget }}</p>                             
                             </div>
                         </div>                        
-                    </div> <br>               
-                    <div class="card animated pulse">
-                        <div class="card">
-                            <div class="card-header text-dark bg-light" >
-                                <span class="float-left">
-                                    <h5 class="card-title"><i class="fas fa-balance-scale"></i>  Available Balance</h5>
-                                </span>
-                            </div>
-                            <div class="card-body"> 
-                                MAXIMO BALANCE                              
-                            </div>
-                        </div>                        
-                    </div><br> 
+                    </div>
+                    <br>               
                     <div class="card animated pulse">
                         <div class="card">
                             <div class="card-header text-dark bg-light">                        
@@ -91,9 +68,41 @@
         </div>       
 </div>
 </template>
-
+    
 <script>
+import axios from 'axios';
+import NavBarWallet from '../components/NavBarWallet.vue'
 
+export default {
+    name: 'walletEnterprise',
+    components: {
+        NavBarWallet
+    },
+    data() {
+        return {
+            enterprise: null,
+            response: null,
+            link: '/Wallet-enterprise'
+        }
+    }, beforeCreate() {
+        const pathEnterpise = '/enterprise/find/' + localStorage.getItem('username');
+        axios
+            .get(this.$store.state.backURL + pathEnterpise)
+            .then(response => {
+                if(response.status !== 200) {
+                    alert("Request error");
+                } else {
+                    this.enterprise = response.data;
+                }
+            }).catch(error => {
+                if(error.status === 500) {
+                    alert("Server error");
+                } else {
+                    alert("Backent conection impossible");
+                }
+            });
+    }
+}
 </script>
 
 <style>

@@ -1,17 +1,6 @@
 <template>
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <div class="col">
-            <h2 class="text-dark">
-                <a class="text-dark" href="/Wallet"><i class="fas fa-wallet"></i> UN Wallet</a>
-                    <span class="float-right">
-                        <!--i class="fas fa-user"></i> <%= name + ' ' + lastName %-->
-                        {{this.user.user.Usr_name}}
-                    <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>
-                </span>
-            </h2>
-        </div>
-    </nav>
+    <nav-bar-wallet :username="this.user.user.Usr_name" :linkProp="this.link"/>
     <br>
 
     <!--2cards same row -->
@@ -29,7 +18,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-balance-scale"></i> Balance</h5>
-                            <p class="card-text">${{this.wallet.wallets[0].Wal_balance}}</p>
+                            <p class="card-text">${{ this.wallet.wallets[0].Wal_balance }}</p>
                         </div>
                     </div>
                 </div>
@@ -89,17 +78,22 @@
 <script>
 import axios from 'axios';
 import clipboard from 'clipboard';
+import NavBarWallet from '../components/NavBarWallet.vue'
 
 new clipboard('#button');
 
 export default {
     name: "Wallet",
+    components: {
+        NavBarWallet
+    },
     data(){
         return {
             user: null,
             wallet: null,
             movement: null,
-            response: null
+            response: null,
+            link: '/wallet'
         }
     },
     beforeCreate() {
@@ -153,7 +147,7 @@ export default {
                     alert("Backent conection impossible");
                 }
             });
-    } 
+    }
 }
 </script>
 

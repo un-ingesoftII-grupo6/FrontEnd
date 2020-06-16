@@ -11,24 +11,31 @@ import WalletEnterprise from "./views/Wallet-enterprise";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/Signup",
+      path: '*',
+      redirect: '/'
+    },
+    {
+      path: "/signup",
       name: "signup",
       component: Signup
     },
     {
-      path: "/Login",
+      path: "/login",
       name: "login",
       component: Login
     },
     {
-      path: "/Wallet",
+      path: "/wallet",
       name: "wallet",
       component: Wallet,
+      meta: {
+        auth: true
+      }
     },
     {
       path: "/",
@@ -36,24 +43,49 @@ export default new Router({
       component: Welcome
     },
     {
-      path: "/Support",
+      path: "/support",
       name: "support",
       component: Support
     },
     {
-      path: "/Make-transfer",
+      path: "/make-transfer",
       name: "makeTransfer",
-      component: MakeTransfer
+      component: MakeTransfer,
+      meta: {
+        auth: true
+      }
     },
     {
-      path: "/Operations",
+      path: "/operations",
       name: "operations",
-      component: Operations
+      component: Operations,
+      meta: {
+        auth: true
+      }
     },
     {
-      path: "/Wallet-enterprise",
+      path: "/wallet-enterprise",
       name: "walletEnterprise",
-      component: WalletEnterprise
+      component: WalletEnterprise,
+      meta: {
+        auth: true
+      }
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  let username = (localStorage.getItem('username')) === null ? false : true;
+
+  if(to.matched.some(record => record.meta.auth)) {
+    if(username) {
+      next();
+    } else {
+      next({ name: 'login' });
+    }
+  } else {
+    next();
+  }
+})
+
+export default router;

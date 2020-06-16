@@ -2,18 +2,21 @@
 <div id="app">
   <v-app>
     <router-view></router-view>
-    <v-footer id ="footer" class="py-4 bg-dark text-white-50" padless>
-      <v-row justify="center" no-gutters>
-        <strong>Copyright &copy; UN Wallet</strong>
-      </v-row>
-    </v-footer>
+    <Footer>
+      <v-footer id ="footer" class="py-4 bg-dark text-white-50" padless>
+        <v-row justify="center" no-gutters>
+            <strong>Copyright &copy; UN Wallet</strong>
+        </v-row>
+      </v-footer>
+    </Footer>
   </v-app>
 </div>
 </template>
 
 <script>
+
 export default {
-  name: "App"
+  name: "App",
 }
 </script>
 
