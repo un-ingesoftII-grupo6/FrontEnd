@@ -1,19 +1,6 @@
 <template>
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <div class="container">
-            <div class="col">
-                <h2 class="text-dark">
-                    <a class="text-dark" href="/Wallet"><i class="fas fa-wallet"></i> UN Wallet</a>
-                    <span class="float-right">
-                        <!--i class="fas fa-user"></i> <%= name + ' ' + lastName %-->
-                        {{this.user.user.Usr_name}}
-                        <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>                    
-                    </span>
-                </h2>
-            </div>
-        </div>
-    </nav>
+    <nav-bar-wallet :username="this.user.user.Usr_name" :linkProp="this.link"/>
     <br>
 
     <div class="container p-4">
@@ -54,10 +41,14 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+import NavBarWallet from '../components/NavBarWallet.vue'
 
 export default {
-    name: "Make-transfer",
+    name: 'Make-transfer',
+    components: {
+        NavBarWallet
+    },
     data(){
         return {
             user: null,
@@ -66,13 +57,18 @@ export default {
             wal_id_sender: '',
             amount: null,
             password: '',                
-            response: null
+            response: null,
+            link: '/wallet'
         }
     },
     beforeCreate() {
         const pathUser = '/user/find/' + localStorage.getItem('username');
         axios
-            .get(this.$store.state.backURL + pathUser)
+            .get(this.$store.state.backURL + pathUser, {
+                headers: {
+                    'access-token': localStorage.getItem('token')
+                }
+            })
             .then(response => {
                 if(response.status !== 200) {
                     alert("Request error");
@@ -89,7 +85,11 @@ export default {
 
         const pathWallet = '/wallet/find/all/' + localStorage.getItem('username');
         axios
-            .get(this.$store.state.backURL + pathWallet)
+            .get(this.$store.state.backURL + pathWallet, {
+                headers: {
+                    'access-token': localStorage.getItem('token')
+                }
+            })
             .then(response => {
                 if(response.status !== 200) {
                     alert("Request error");
@@ -105,37 +105,36 @@ export default {
             });
     },
     methods: {
-            transfer(event) {
-                /*if(this.password !== this.user.user.Usr_password){
-                    alert("Incorrec password");
-                    event.preventDefault( );
-                    return;
-                }*/
-
-                const path = '/movement/send-money';
-                axios
-                    .post(this.$store.state.backURL + path,
-                        {
-                            wal_id_sender: this.wallet.wallets[0].Wal_id.trim(),
-                            wal_id_recipient: this.destWallet.trim(),
-                            amount: this.amount,
-                            password: this.password
+        transfer(event) {
+            const path = '/movement/send-money';
+            axios
+                .post(this.$store.state.backURL + path,
+                    {
+                        wal_id_sender: this.wallet.wallets[0].Wal_id.trim(),
+                        wal_id_recipient: this.destWallet.trim(),
+                        amount: this.amount,
+                        password: this.password
+                    },
+                    {
+                        headers: {
+                            'access-token': localStorage.getItem('token')
                         }
-                    ).then(response => {
-                        if(response.status !== 201) {
-                            alert("Transfer storage error");
-                        } else {
-                            alert("Movement done correctly");
-                        }
-                    }).catch( error =>{
-                        if( error.response.status !== 201 ){
-                            alert(error.response.data);
-                        }
-                    });
-                event.preventDefault( );
-                return true;
-            }
-        } 
+                    }
+                ).then(response => {
+                    if(response.status !== 201) {
+                        alert("Transfer storage error");
+                    } else {
+                        alert("Movement done correctly");
+                    }
+                }).catch( error =>{
+                    if( error.response.status !== 201 ){
+                        alert(error.response.data);
+                    }
+                });
+            event.preventDefault( );
+            return true;
+        }
+    } 
 }
 </script>
 

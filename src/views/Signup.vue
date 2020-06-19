@@ -61,8 +61,7 @@
                             </div>
                             <div class="form-group">
                                 <div>
-                                    <input id="button1" type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">
-                                    <input id="button2" type="submit" value="Submit" class="btn btn-dark">
+                                    <input id="button1" type="submit" value="Submit" class="btn btn-success">
                                 </div>
                             </div>
                         </form>
@@ -75,65 +74,61 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import NavBar from "../components/NavBar.vue"
+import axios from 'axios'
+import NavBar from '../components/NavBar.vue'
 
-    const path = '/user/signup';
+const path = '/user/signup';
 
-    export default {
-        name: "Signup",
-        components: {
-            NavBar
-        },
-        data( ){
-            return{
-                name: '',
-                surname: '',
-                email: '',
-                username: '',
-                password: '',
-                cPassword: '',
-                response: null
-            }
-        },
-        methods: {
-            signUp(event) {
-                if(this.password !== this.cPassword){
-                        event.preventDefault( );
-                        return;
-                    }
-                    axios
-                        .post(this.$store.state.backURL + path,
-                            {
-                                name: this.name.trim(),
-                                surname: this.surname.trim(),
-                                email: this.email.trim(),
-                                username: this.username.trim(),
-                                password: this.password,
-                                cpassword: this.cPassword
-                            }
-                        ).then(response => {
-                            if(response.status !== 201) {
-                                alert("User storage error");
-                            } else {
-                                alert("Correctly registered user");
-                            }
-                        }).catch( error =>{
-                            alert(error.response.data);
-                        });
+export default {
+    name: "Signup",
+    components: {
+        NavBar
+    },
+    data( ){
+        return{
+            name: '',
+            surname: '',
+            email: '',
+            username: '',
+            password: '',
+            cPassword: '',
+            response: null
+        }
+    },
+    methods: {
+        signUp(event) {
+            if(this.password !== this.cPassword){
                     event.preventDefault( );
-                    return true;
+                    return;
                 }
+                axios
+                    .post(this.$store.state.backURL + path,
+                        {
+                            name: this.name.trim(),
+                            surname: this.surname.trim(),
+                            email: this.email.trim(),
+                            username: this.username.trim(),
+                            password: this.password,
+                            cpassword: this.cPassword
+                        }
+                    ).then(response => {
+                        if(response.status !== 201) {
+                            alert("User storage error");
+                        } else {
+                            alert("Correctly registered user");
+                        }
+                    }).catch( error =>{
+                        alert(error.response.data);
+                    });
+                event.preventDefault( );
+                return true;
             }
         }
+    }
     </script>
     
     <style>   
     #button1 {
         margin-top: .8em;
-    }
-    #button2 {
-        margin-top: .8em;
-        margin-left: .8em;
     }
     </style>

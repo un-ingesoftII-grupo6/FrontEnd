@@ -3,10 +3,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
         <div class="col">
             <h2 class="text-dark">
-                <a class="text-dark" href="/"><i class="fas fa-wallet"></i> UN Wallet</a>
+                <router-link style="text-decoration: none;"
+                    to="/" class="text-dark">
+                    <i class="fas fa-wallet"/> UN Wallet</router-link>
                 <span class="float-right">
-                    <a href="/Login" class="btn btn-dark">Log in</a>
-                    <a href="/Signup" id="button" class="btn btn-dark">Sign up</a>
+                    <router-link to="/login" class="btn btn-dark">Log in</router-link>
+                    <router-link to="/signup" id="button" class="btn btn-dark">Sign up</router-link>
                 </span>
             </h2>
         </div>
@@ -22,7 +24,7 @@
                 <div class="card animated pulse">
                     <div class="card">
                         <div class="card-header text-dark bg-light text-center">
-                            <h3>UN wallet advantages</h3>
+                            <h3>UN Wallet advantages</h3>
                         </div>
                         <div class="card-body">
                             <ul>
@@ -45,13 +47,12 @@
     <div class="container">
         <a href="/Support" class="btn btn-dark btn-rounded"><i class="far fa-question-circle"></i> Support</a>
     </div>
-
 </div>
 </template>
 
 <script>
 export default {
-    name: "welcome"
+    name: 'welcome'
 }
 </script>
 

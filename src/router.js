@@ -75,17 +75,21 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  let username = (localStorage.getItem('username')) === null ? false : true;
-
-  if(to.matched.some(record => record.meta.auth)) {
-    if(username) {
-      next();
+    let token = (localStorage.getItem('token')) === null ? false : true;
+    
+    if(to.matched.some(record => record.meta.auth)) {
+        if(token) {
+            next();
+        } else {
+            next({ name: 'login' });
+        }
     } else {
-      next({ name: 'login' });
+        if(token) {
+            next(false);
+        } else {
+            next();
+        }
     }
-  } else {
-    next();
-  }
 })
 
 export default router;

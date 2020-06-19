@@ -18,7 +18,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-balance-scale"></i> Balance</h5>
-                            <p class="card-text">${{ this.wallet.wallets[0].Wal_balance }}</p>
+                            <p class="card-text">${{ new Intl.NumberFormat("de-DE").format(this.wallet.wallets[0].Wal_balance) }}</p>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         <h5 class="card-title">Easy and Fast</h5>
                         <p class="card-text">Seen money card example here we can put 
                             the max monay that can send a wallet_user attention for type wallet</p>
-                        <a href="/Make-transfer" class="btn btn-dark">Send</a>
+                        <a href="/make-transfer" class="btn btn-dark">Send</a>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-dark bg-light">                        
-                        <h5><i class="fas fa-history"></i> Transaction History<span class="float-right"><a href="/Operations" class="btn btn-dark">Operations</a></span></h5>                                                  
+                        <h5><i class="fas fa-history"></i> Transaction History<span class="float-right"><a href="/operations" class="btn btn-dark">Operations</a></span></h5>                                                  
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"></h5>
@@ -53,7 +53,7 @@
                             <ul id="modifies-recipient">
                                 <h5>Received</h5>
                                 <li v-for="(item, i) in movement.wallets[0].modifies_recipient" :key="i">
-                                    Date: {{ item.Mov_timestamp }}, Amount: {{ item.Mov_total_amount}}
+                                    Date: {{ item.Mov_timestamp }}, Amount: {{ new Intl.NumberFormat("de-DE").format(item.Mov_total_amount) }}
                                 </li>
                             </ul>
                         </div>
@@ -62,7 +62,7 @@
                             <ul id="modifies_sender">
                                 <h5>Sent</h5>
                                 <li v-for="(item, i) in movement.wallets[0].modifies_sender" :key="i">
-                                    Date: {{ item.Mov_timestamp }}, Amount: {{ item.Mov_total_amount }}
+                                    Date: {{ item.Mov_timestamp }}, Amount: {{ new Intl.NumberFormat("de-DE").format(item.Mov_total_amount) }}
                                 </li>
                             </ul>
                         </div>
@@ -76,14 +76,14 @@
 </template>
 
 <script>
-import axios from 'axios';
-import clipboard from 'clipboard';
+import axios from 'axios'
+import clipboard from 'clipboard'
 import NavBarWallet from '../components/NavBarWallet.vue'
 
 new clipboard('#button');
 
 export default {
-    name: "Wallet",
+    name: 'Wallet',
     components: {
         NavBarWallet
     },
@@ -99,7 +99,11 @@ export default {
     beforeCreate() {
         const pathUser = '/user/find/' + localStorage.getItem('username');
         axios
-            .get(this.$store.state.backURL + pathUser)
+            .get(this.$store.state.backURL + pathUser, {
+                headers: {
+                    'access-token': localStorage.getItem('token')
+                }
+            })
             .then(response => {
                 if(response.status !== 200) {
                     alert("Request error");
@@ -116,7 +120,11 @@ export default {
         
         const pathWallet = '/wallet/find/all/' + localStorage.getItem('username');
         axios
-            .get(this.$store.state.backURL + pathWallet)
+            .get(this.$store.state.backURL + pathWallet, {
+                headers: {
+                    'access-token': localStorage.getItem('token')
+                }
+            })
             .then(response => {
                 if(response.status !== 200) {
                     alert("Request error");
@@ -133,7 +141,11 @@ export default {
 
             const pathMovement = '/movement/find/all/' + localStorage.getItem('username');
         axios
-            .get(this.$store.state.backURL + pathMovement)
+            .get(this.$store.state.backURL + pathMovement, {
+                headers: {
+                    'access-token': localStorage.getItem('token')
+                }
+            })
             .then(response => {
                 if(response.status !== 200) {
                     alert("Request error");

@@ -5,12 +5,12 @@
 
     <!--Select scroll need update -->
     <div class="container p-2">
-    <select v-model="selected">
+    <!--select v-model="selected">
     <option disabled value="">Please select one</option>
         <option>A</option>
         <option>B</option>
         <option>C</option>
-    </select>
+    </select-->
     <!--span class="text-white"> Selected: {{ selected }}</span-->
     </div>  <!--end scroll -->  
     <div class="container p-2">
@@ -19,23 +19,13 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header text-dark bg-light">                        
-                            <h5><i class="fas fa-history"></i> Transaction history<span class="float-right"><button class="btn btn-dark">Operations</button></span></h5>                                                  
+                            <h5><i class="fas fa-history"></i> Transaction history<span class="float-right"><a href="/operations" class="btn btn-dark">Operations</a></span></h5>                                                  
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"></h5>
+                            <h5 class="card-title">See all movements of your associated users</h5>
                             <p class="card-text"></p>
                             <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
+                            
                         </div>
                     </div>
                 </div>
@@ -49,7 +39,7 @@
                                 </span>
                             </div>
                             <div class="card-body">
-                                <p class="card-text">${{ this.enterprise.enterprise.Ent_budget }}</p>                             
+                                <p class="card-text">${{ new Intl.NumberFormat("de-DE").format(this.enterprise.enterprise.Ent_budget) }}</p>                             
                             </div>
                         </div>                        
                     </div>
@@ -70,7 +60,7 @@
 </template>
     
 <script>
-import axios from 'axios';
+import axios from 'axios'
 import NavBarWallet from '../components/NavBarWallet.vue'
 
 export default {
@@ -87,7 +77,11 @@ export default {
     }, beforeCreate() {
         const pathEnterpise = '/enterprise/find/' + localStorage.getItem('username');
         axios
-            .get(this.$store.state.backURL + pathEnterpise)
+            .get(this.$store.state.backURL + pathEnterpise, {
+                headers: {
+                    'access-token': localStorage.getItem('token')
+                }
+            })
             .then(response => {
                 if(response.status !== 200) {
                     alert("Request error");

@@ -1,17 +1,6 @@
 <template>
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <div class="col">
-            <h2 class="text-dark">
-                <a class="text-dark" href="/Wallet"><i class="fas fa-wallet"></i> UN Wallet</a>
-                <span class="float-right">
-                    <!--i class="fas fa-user"></i> <%= name + ' ' + lastName %-->
-                    {{ this.user.user.Usr_name}}
-                    <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>
-                </span>
-            </h2>
-        </div>
-    </nav>
+    <nav-bar-wallet :username="this.user.user.Usr_name" :linkProp="this.link"/>
     <br>
 
     <div class="container p-3">
@@ -39,7 +28,7 @@
                             <ul id="modifies_sender">
                                 <h5>Sent</h5>
                                 <li v-for="(item, i) in movement.wallets[0].modifies_sender" :key="i">
-                                    <b>Date:</b> {{ item.Mov_timestamp }}, <b>Recipient:</b> {{item.Wal_id_recipient}}, <b>Amount:</b> ${{ item.Mov_total_amount }}
+                                    <b>Date:</b> {{ item.Mov_timestamp }}, <b>Recipient:</b> {{item.Wal_id_recipient}}, <b>Amount:</b> ${{ new Intl.NumberFormat("de-DE").format(item.Mov_total_amount) }}
                                 </li>
                             </ul>
                         </div>
@@ -65,12 +54,14 @@
 
 <script>
 import axios from 'axios';
-import LineChart from "../components/LineChart.js"
+import LineChart from '../components/LineChart.js'
+import NavBarWallet from '../components/NavBarWallet.vue'
 
 export default {
-    name: "Operations",
+    name: 'Operations',
     components: {
-        LineChart
+        LineChart,
+        NavBarWallet
     },
     data(){
         return {
@@ -78,13 +69,18 @@ export default {
             movement: null,
             response: null,
             chartdata: null,
-            options: null
+            options: null,
+            link: '/wallet'
         }
     },
     beforeCreate() {
         const pathUser = '/user/find/' + localStorage.getItem('username');
         axios
-            .get(this.$store.state.backURL + pathUser)
+            .get(this.$store.state.backURL + pathUser, {
+                headers: {
+                    'access-token': localStorage.getItem('token')
+                }
+            })
             .then(response => {
                 if(response.status !== 200) {
                     alert("Request error");
@@ -101,7 +97,11 @@ export default {
 
             const pathMovement = '/movement/find/all/' + localStorage.getItem('username');
         axios
-            .get(this.$store.state.backURL + pathMovement)
+            .get(this.$store.state.backURL + pathMovement, {
+                headers: {
+                    'access-token': localStorage.getItem('token')
+                }
+            })
             .then(response => {
                 if(response.status !== 200) {
                     alert("Request error");

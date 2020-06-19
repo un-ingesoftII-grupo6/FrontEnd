@@ -22,10 +22,8 @@
                                 <input type="password" class="form-control" id="password" placeholder="Password" name="password" v-model="password" required/>
                             </div>
                             <div class="form-group">
-                                <br>
                                 <div class="form-group">
-                                    <input id="button1" type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">
-                                    <input  id="button2" type="submit" value="Submit" class="btn btn-dark">
+                                    <input  id="button1" type="submit" value="Submit" class="btn btn-success">
                                 </div>
                             </div>
                         </form>
@@ -41,66 +39,63 @@
 </template>
 
 <script>
-    import axios from 'axios';
-    import NavBar from "../components/NavBar.vue"
+import axios from 'axios';
+import NavBar from '../components/NavBar.vue'
 
-    const path = "/user/login";
-    
-    export default {
-        name: "Login",
-        components: {
-            NavBar
-        },
-        data(){
-            return {
-                username: '',
-                password: '',
-                user: null,                
-                response: null
-            }
-        },
-        methods: {
-            login(event) {
-                axios
-                .post(this.$store.state.backURL + path,
-                    {
-                        username: this.username.trim(),
-                        password: this.password
-                    }
-                ).then(response => {
-                    if(response.status !== 200) {
-                        alert("Authentication error");
+const path = "/user/login";
+
+export default {
+    name: "Login",
+    components: {
+        NavBar
+    },
+    data(){
+        return {
+            username: '',
+            password: '',
+            user: null,                
+            response: null
+        }
+    },
+    methods: {
+        login(event) {
+            axios
+            .post(this.$store.state.backURL + path,
+                {
+                    username: this.username.trim(),
+                    password: this.password
+                }
+            ).then(response => {
+                if(response.status !== 200) {
+                    alert("Authentication error");
+                } else {
+                    localStorage.setItem('username', this.username);
+                    localStorage.setItem('token', response.data.token);
+                    
+                    if(typeof(response.data.user) === "object") {
+                        if(response.data.user.possess[0].Wtyp_id !== 2){
+                            this.$router.push( {name: 'wallet'});
+                        } 
                     } else {
-                        localStorage.setItem('username', this.username);
-                        if(typeof(response.data.user) === "object") {
-                            if(response.data.user.possess[0].Wtyp_id !== 2){
-                                this.$router.push( {name: 'wallet'});
-                            } 
-                        } else {
-                            if(response.data.enterprise !== null) {
-                                this.$router.push( {name: 'walletEnterprise'});
-                            }
+                        if(response.data.enterprise !== null) {
+                            this.$router.push( {name: 'walletEnterprise'});
                         }
                     }
-                }).catch(error => {
-                        if( error.response.status !== 201 ){
-                            alert(error.response.data);
-                        }
-                });
-                event.preventDefault();
-                return true;
-            }
+                }
+            }).catch(error => {
+                    if( error.response.status !== 201 ){
+                        alert(error.response.data);
+                    }
+            });
+            event.preventDefault();
+            return true;
         }
     }
+}
 </script>
 
 <style>
-    #button1 {
-        margin-top: .8em;
-    }
-
-    #button2 {
-        margin-top: .8em;
-        margin-left: .8em;
-    }
+#button1 {
+    margin-top: .8em;
+}
 </style>
