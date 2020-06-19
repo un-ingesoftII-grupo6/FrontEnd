@@ -1,6 +1,6 @@
 <template>
 <div>
-    <nav-bar-wallet :username="this.user.user.Usr_name" :linkProp="this.link"/>
+    <nav-bar-wallet :username="this.name" :linkProp="this.link"/>
     <br>
 
     <div class="container p-4">
@@ -51,7 +51,7 @@ export default {
     },
     data(){
         return {
-            user: null,
+            name: localStorage.getItem('name'),
             wallet: null,
             destWallet: '',
             wal_id_sender: '',
@@ -62,27 +62,6 @@ export default {
         }
     },
     beforeCreate() {
-        const pathUser = '/user/find/' + localStorage.getItem('username');
-        axios
-            .get(this.$store.state.backURL + pathUser, {
-                headers: {
-                    'access-token': localStorage.getItem('token')
-                }
-            })
-            .then(response => {
-                if(response.status !== 200) {
-                    alert("Request error");
-                } else {
-                    this.user = response.data;
-                }
-            }).catch(error => {
-                if(error.status === 500) {
-                    alert("Server error");
-                } else {
-                    alert("Backent conection impossible");
-                }
-            });
-
         const pathWallet = '/wallet/find/all/' + localStorage.getItem('username');
         axios
             .get(this.$store.state.backURL + pathWallet, {

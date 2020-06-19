@@ -1,6 +1,6 @@
 <template>
 <div>
-    <nav-bar-wallet :username="this.user.user.Usr_name" :linkProp="this.link"/>
+    <nav-bar-wallet :username="this.name" :linkProp="this.link"/>
     <br>
 
     <div class="container p-3">
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 import LineChart from '../components/LineChart.js'
 import NavBarWallet from '../components/NavBarWallet.vue'
 
@@ -65,7 +65,7 @@ export default {
     },
     data(){
         return {
-            user: null,
+            name: localStorage.getItem('name'),
             movement: null,
             response: null,
             chartdata: null,
@@ -74,28 +74,7 @@ export default {
         }
     },
     beforeCreate() {
-        const pathUser = '/user/find/' + localStorage.getItem('username');
-        axios
-            .get(this.$store.state.backURL + pathUser, {
-                headers: {
-                    'access-token': localStorage.getItem('token')
-                }
-            })
-            .then(response => {
-                if(response.status !== 200) {
-                    alert("Request error");
-                } else {
-                    this.user = response.data;
-                }
-            }).catch(error => {
-                if(error.status === 500) {
-                    alert("Server error");
-                } else {
-                    alert("Backent conection impossible");
-                }
-            });
-
-            const pathMovement = '/movement/find/all/' + localStorage.getItem('username');
+        const pathMovement = '/movement/find/all/' + localStorage.getItem('username');
         axios
             .get(this.$store.state.backURL + pathMovement, {
                 headers: {

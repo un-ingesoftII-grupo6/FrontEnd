@@ -1,6 +1,6 @@
 <template>
 <div>
-    <nav-bar-wallet :username="this.user.user.Usr_name" :linkProp="this.link"/>
+    <nav-bar-wallet :username="this.name" :linkProp="this.link"/>
     <br>
 
     <!--2cards same row -->
@@ -30,7 +30,7 @@
                         <h5 class="card-title">Easy and Fast</h5>
                         <p class="card-text">Seen money card example here we can put 
                             the max monay that can send a wallet_user attention for type wallet</p>
-                        <a href="/make-transfer" class="btn btn-dark">Send</a>
+                        <router-link to="/make-transfer" class="btn btn-dark">Send</router-link>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-dark bg-light">                        
-                        <h5><i class="fas fa-history"></i> Transaction History<span class="float-right"><a href="/operations" class="btn btn-dark">Operations</a></span></h5>                                                  
+                        <h5><i class="fas fa-history"></i> Transaction History<span class="float-right"><router-link to="/operations" class="btn btn-dark">Operations</router-link></span></h5>                                                  
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"></h5>
@@ -89,7 +89,7 @@ export default {
     },
     data(){
         return {
-            user: null,
+            name: localStorage.getItem('name'),
             wallet: null,
             movement: null,
             response: null,
@@ -97,27 +97,6 @@ export default {
         }
     },
     beforeCreate() {
-        const pathUser = '/user/find/' + localStorage.getItem('username');
-        axios
-            .get(this.$store.state.backURL + pathUser, {
-                headers: {
-                    'access-token': localStorage.getItem('token')
-                }
-            })
-            .then(response => {
-                if(response.status !== 200) {
-                    alert("Request error");
-                } else {
-                    this.user = response.data;
-                }
-            }).catch(error => {
-                if(error.status === 500) {
-                    alert("Server error");
-                } else {
-                    alert("Backent conection impossible");
-                }
-            });
-        
         const pathWallet = '/wallet/find/all/' + localStorage.getItem('username');
         axios
             .get(this.$store.state.backURL + pathWallet, {

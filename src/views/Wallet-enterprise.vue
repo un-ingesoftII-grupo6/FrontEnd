@@ -1,6 +1,6 @@
 <template>
 <div>
-    <nav-bar-wallet :username="this.enterprise.enterprise.Ent_name" :linkProp="this.link"/>
+    <nav-bar-wallet :username="this.name" :linkProp="this.link"/>
     <br>
 
     <!--Select scroll need update -->
@@ -19,7 +19,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header text-dark bg-light">                        
-                            <h5><i class="fas fa-history"></i> Transaction history<span class="float-right"><a href="/operations" class="btn btn-dark">Operations</a></span></h5>                                                  
+                            <h5><i class="fas fa-history"></i> Transaction history<span class="float-right"><router-link to="/operations" class="btn btn-dark">Operations</router-link></span></h5>                                                  
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">See all movements of your associated users</h5>
@@ -46,9 +46,18 @@
                     <br>               
                     <div class="card animated pulse">
                         <div class="card">
-                            <div class="card-header text-dark bg-light">                        
-                             <h5><i class="fas fa-balance-scale"></i> Set Limits<span class="float-right"><button class="btn btn-dark"> SET</button></span></h5><br>
-                             <h5><i class="fas fa-balance-scale"></i> Add Founds<span class="float-right"><button class="btn btn-dark">ADD</button></span></h5>                                                 
+                            <div class="card-header text-dark bg-light" >
+                                <span class="float-left">
+                                    <h5 class="card-title"><i class="fas fa-balance-scale"></i> Wallet Options</h5>
+                                </span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">                  
+                                    <i class="fas fa-balance-scale"></i> Manage Associated Wallets<span class="float-right"><router-link to="/Associated-wallets" class="btn btn-dark">Manage</router-link></span>
+                                </p>
+                                <p class="card-text">
+                                    <i class="fas fa-balance-scale"></i> Create Associated Wallets<span class="float-right"><router-link to="/Associated-wallets" class="btn btn-dark">Create</router-link></span>
+                                </p>
                             </div>
                         </div>                        
                     </div><br>                                         
@@ -70,9 +79,10 @@ export default {
     },
     data() {
         return {
+            name: localStorage.getItem('name'),
             enterprise: null,
             response: null,
-            link: '/Wallet-enterprise'
+            link: '/wallet-enterprise'
         }
     }, beforeCreate() {
         const pathEnterpise = '/enterprise/find/' + localStorage.getItem('username');

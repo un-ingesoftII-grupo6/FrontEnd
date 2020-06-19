@@ -4,7 +4,7 @@
     <br>
     
     <div class="container p-4">
-        <div class="row ">
+        <div class="row">
             <div class="col -md-4"></div>
             <div class="col -md-4">
                 <div class="card animated flipInY">
@@ -23,7 +23,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="form-group">
-                                    <input  id="button1" type="submit" value="Submit" class="btn btn-success">
+                                    <input id="button1" type="submit" value="Submit" class="btn btn-success">
                                 </div>
                             </div>
                         </form>
@@ -73,10 +73,12 @@ export default {
                     localStorage.setItem('token', response.data.token);
                     
                     if(typeof(response.data.user) === "object") {
+                        localStorage.setItem('name', response.data.user.Usr_name);
                         if(response.data.user.possess[0].Wtyp_id !== 2){
                             this.$router.push( {name: 'wallet'});
                         } 
                     } else {
+                        localStorage.setItem('name', response.data.enterprise.Ent_name);
                         if(response.data.enterprise !== null) {
                             this.$router.push( {name: 'walletEnterprise'});
                         }
@@ -95,7 +97,5 @@ export default {
 </script>
 
 <style>
-#button1 {
-    margin-top: .8em;
-}
+
 </style>

@@ -57,7 +57,5 @@ export default {
 </script>
 
 <style>
-#button {
-    margin-left: .8em;
-}
+
 </style>

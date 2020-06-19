@@ -39,6 +39,7 @@ export default {
         logOut() {
             localStorage.removeItem('username');
             localStorage.removeItem('token');
+            localStorage.removeItem('name');
         }
     }
 }

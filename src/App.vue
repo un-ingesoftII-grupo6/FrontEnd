@@ -43,4 +43,12 @@ body {
   width: 100%;
   text-align: center;
 }
+
+#button {
+    margin-left: .8em;
+}
+
+#button1 {
+    margin-top: .8em;
+}
 </style>
