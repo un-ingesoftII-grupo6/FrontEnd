@@ -24,7 +24,11 @@ const router = new Router({
         {
             path: "/signup",
             name: "signup",
-            component: Signup
+            component: Signup,
+            props: true,
+            meta: {
+                access: true
+            }
         },
         {
             path: "/login",
@@ -77,6 +81,7 @@ const router = new Router({
             path: '/set-limits',
             name: 'setLimits',
             component: SetLimits,
+            props: true,
             meta: {
                 auth: true
             }
@@ -101,6 +106,8 @@ router.beforeEach((to, from, next) => {
         } else {
             next({ name: 'login' });
         }
+    } else if(to.matched.some(record => record.meta.access)) {
+        next();
     } else {
         if(token) {
             next(false);

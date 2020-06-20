@@ -19,13 +19,13 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header text-dark bg-light">                        
-                            <h5><i class="fas fa-history"></i> Transaction history<span class="float-right"><router-link to="/operations" class="btn btn-dark">Operations</router-link></span></h5>                                                  
+                            <h5><i class="fas fa-history"></i> Transaction History<span class="float-right"><router-link to="/operations" class="btn btn-dark">Operations</router-link></span></h5>                                                  
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">See all movements of your associated users</h5>
-                            <p class="card-text"></p>
-                            <br>
-                            
+                            <p class="card-text">
+                                Keep the transaction history of both you and the wallets associated with your enterprise wallet handy.
+                            </p>
+                            <br>  
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                                 </span>
                             </div>
                             <div class="card-body">
-                                <p class="card-text">${{ new Intl.NumberFormat("de-DE").format(this.enterprise.enterprise.Ent_budget) }}</p>                             
+                                <h5 class="card-title">${{ new Intl.NumberFormat("de-DE").format(this.enterprise.enterprise.Ent_budget) }}</h5>                             
                             </div>
                         </div>                        
                     </div>
@@ -48,19 +48,38 @@
                         <div class="card">
                             <div class="card-header text-dark bg-light" >
                                 <span class="float-left">
-                                    <h5 class="card-title"><i class="fas fa-balance-scale"></i> Wallet Options</h5>
+                                    <h5 class="card-title"><i class="fas fa-tools"/> Wallet Options</h5>
                                 </span>
                             </div>
                             <div class="card-body">
-                                <p class="card-text">                  
-                                    <i class="fas fa-balance-scale"></i> Manage Associated Wallets<span class="float-right"><router-link to="/Associated-wallets" class="btn btn-dark">Manage</router-link></span>
-                                </p>
-                                <p class="card-text">
-                                    <i class="fas fa-balance-scale"></i> Create Associated Wallets<span class="float-right"><router-link to="/Associated-wallets" class="btn btn-dark">Create</router-link></span>
-                                </p>
+                                <ul>
+                                    <li>
+                                        <p class="card-text">                  
+                                            Manage Associated Wallets
+                                            <span class="float-right">
+                                                <router-link to="/Associated-wallets" class="btn btn-dark btn-sm">
+                                                    Manage
+                                                </router-link>
+                                            </span>
+                                        </p>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <p class="card-text">
+                                            Create Associated Wallets
+                                            <span class="float-right">
+                                                <router-link class="btn btn-dark btn-sm" :to="{name: 'signup', params: {wallettype: 3, enterprise_id: this.enterprise.enterprise.Ent_id, pname: 'Create Associated Wallet'}}">
+                                                    Create
+                                                </router-link>
+                                            </span>
+                                        </p>
+                                    </li>
+                                </ul>
                             </div>
                         </div>                        
-                    </div><br>                                         
+                    </div>
+                    <br>                                         
                 </div>                                
             </div>
             <br>

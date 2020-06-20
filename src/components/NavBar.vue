@@ -3,7 +3,7 @@
         <div class="col">
             <h2 class="text-dark">
                 <router-link style="text-decoration: none;"
-                    to="/" class="text-dark">
+                    :to="this.link" class="text-dark">
                     <i class="fas fa-wallet"/> UN Wallet</router-link>
             </h2>
         </div>
@@ -13,6 +13,20 @@
 <script>
 export default {
     name: 'navBar',
+    data() {
+        return {
+            link : null
+        }
+    },
+    props: {
+        linkProp: {
+            type: String,
+            required: true
+        }
+    },
+    mounted() {
+        this.link = this.linkProp;
+    }
 }
 </script>
 

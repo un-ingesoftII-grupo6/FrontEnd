@@ -10,27 +10,29 @@
                     <div class="card-header bg-light text-dark">
                         <h3><i class="fas fa-history"></i> Operations</h3>
                     </div>
-                    <div class="card-body">
-                        <div v-if="this.movement.wallets[0].modifies_recipient === this.movement.wallets[0].modifies_sender === null">
-                            You don't have any movements
-                        </div>
+                    <div class="overflow-auto">
+                        <div class="card-body">
+                            <div v-if="this.movement.wallets[0].modifies_recipient === this.movement.wallets[0].modifies_sender === null">
+                                You don't have any movements
+                            </div>
 
-                        <div v-if="this.movement.wallets[0].modifies_recipient.length > 0">
-                            <ul id="modifies-recipient">
-                                <h5>Received</h5>
-                                <li v-for="(item, i) in movement.wallets[0].modifies_recipient" :key="i">
-                                    <b>Date:</b> {{ item.Mov_timestamp }}, <b>Sender:</b> {{item.Wal_id_sender}}, <b>Amount:</b> ${{ item.Mov_total_amount}}
-                                </li>
-                            </ul>
-                        </div>
+                            <div v-if="this.movement.wallets[0].modifies_recipient.length > 0">
+                                <ul id="modifies-recipient">
+                                    <h5>Received</h5>
+                                    <li v-for="(item, i) in movement.wallets[0].modifies_recipient" :key="i">
+                                        <b>Date:</b> {{ item.Mov_timestamp }}, <b>Sender:</b> {{item.Wal_id_sender}}, <b>Amount:</b> ${{ item.Mov_total_amount}}
+                                    </li>
+                                </ul>
+                            </div>
 
-                        <div v-if="this.movement.wallets[0].modifies_sender.length > 0">
-                            <ul id="modifies_sender">
-                                <h5>Sent</h5>
-                                <li v-for="(item, i) in movement.wallets[0].modifies_sender" :key="i">
-                                    <b>Date:</b> {{ item.Mov_timestamp }}, <b>Recipient:</b> {{item.Wal_id_recipient}}, <b>Amount:</b> ${{ new Intl.NumberFormat("de-DE").format(item.Mov_total_amount) }}
-                                </li>
-                            </ul>
+                            <div v-if="this.movement.wallets[0].modifies_sender.length > 0">
+                                <ul id="modifies_sender">
+                                    <h5>Sent</h5>
+                                    <li v-for="(item, i) in movement.wallets[0].modifies_sender" :key="i">
+                                        <b>Date:</b> {{ item.Mov_timestamp }}, <b>Recipient:</b> {{item.Wal_id_recipient}}, <b>Amount:</b> ${{ new Intl.NumberFormat("de-DE").format(item.Mov_total_amount) }}
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -39,9 +41,7 @@
         <br>
         <div >
             <div class="card animated flipInY">
-                <line-chart
-                    :chartdata="chartdata"
-                    :options="options"/>
+                <line-chart :chartdata="chartdata" :options="options"/>
             </div>
         </div>
         <br>
@@ -141,5 +141,8 @@ export default {
 </script>
 
 <style>
-
+.overflow-auto {
+  max-height: 400px;
+  overflow-y: scroll;
+}
 </style>

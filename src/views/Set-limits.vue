@@ -2,27 +2,41 @@
 <div>
     <nav-bar-wallet :username="this.name" :linkProp="this.link"/>
     <br>
-
-    <div class="container p-4">
+    
+    <div class="col -md-4">
         <!--starts design card-->        
         <div class="row">
-            <div class="col -md-4"></div> 
+            <div class="col -md-4">
+            
+            </div> 
             <div class="col -md-4">
                 <!--starts card-->        
                 <card class="card animated flipInY">
                     <div class="card-header bg-light text-dark text-left">
-                        <h3><i class="fas fa-balance-scale"></i> Set Limit<span class="float-right"></span></h3>
+                        <h3><i class="fas fa-tools"/> Set Wallet State<span class="float-right"></span></h3>
                     </div>
                     <!--starts card body-->        
                     <div class="card-body">
                         <form>
                             <div class="form-group">
                                 <label for="account">Account</label>
-                                <input name="account" id="account" type="text" class="form-control" placeholder="Account" v-model="username" required/>
+                                <input name="account" id="account" type="text" class="form-control" :placeholder="this.account" disabled required/>
                             </div>
                             <div class="form-group">
-                                <label for="limit">New Limit</label>
-                                <input name="limit" id="limit" type="text" class="form-control" placeholder="Limit" v-model="username" required/>
+                                <label for="state">State</label>
+                                <select id="state" class="browser-default custom-select">
+                                    <option disabled selected>Choose</option>
+                                    <option value="Actived">Actived</option>
+                                    <option value="Disable">Disable</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="movement-limit">New Movement Limit</label>
+                                <input name="movement-limit" id="movement-limit" type="text" class="form-control" placeholder="New Movement Limit" v-model="movementLimit" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="month-limit">New Month Limit</label>
+                                <input name="month-limit" id="month-limit" type="text" class="form-control" placeholder="New Month Limit" v-model="monthLimith" required/>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
@@ -36,9 +50,13 @@
                     </div>
                     <!--starts card body-->                            
                 </card>
-                <!--end card-->        
+                <!--end card--> 
+                <br>
+                <br>
+                <br>
+                <br> 
             </div>
-            <div class="col -md-8"></div>     
+            <div class="col -md-4"></div>     
         </div>     
         <!--end design card-->                  
     </div>
@@ -54,8 +72,19 @@ export default {
     },
     data() {
         return {
-            link: '/wallet-enterprise'
+            name: localStorage.getItem('name'),
+            link: '/wallet-enterprise',
+            account: null
         }
+    },
+    props: {
+        accountProp: {
+            type: String,
+            required: true
+        }
+    },
+    mounted() {
+        this.account = this.accountProp
     }
 }
 </script>

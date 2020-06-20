@@ -27,8 +27,8 @@
                             <div class="form-group">
                                 <br>
                                 <div>
-                                    <input type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">
-                                    <input  id="button" type="submit" value="Submit" class="btn btn-dark">
+                                    <input type="button" value="Go Back" onclick="history.back()" class="btn btn-danger">
+                                    <input  id="button" type="submit" value="Submit" class="btn btn-success">
                                 </div>
                             </div>
                         </form>
@@ -105,8 +105,8 @@ export default {
                     } else {
                         alert("Movement done correctly");
                     }
-                }).catch( error =>{
-                    if( error.response.status !== 201 ){
+                }).catch(error =>{
+                    if(error.response.status !== 201){
                         alert(error.response.data);
                     }
                 });

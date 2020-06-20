@@ -8,7 +8,7 @@
                     <i class="fas fa-wallet"/> UN Wallet</router-link>
                 <span class="float-right">
                     <router-link to="/login" class="btn btn-dark">Log in</router-link>
-                    <router-link to="/signup" id="button" class="btn btn-dark">Sign up</router-link>
+                    <router-link id="button" class="btn btn-dark" :to="{name: 'signup', params: {wallettype: this.wallettype}}">Sign up</router-link>
                 </span>
             </h2>
         </div>
@@ -45,14 +45,19 @@
         <br>
     </div>
     <div class="container">
-        <a href="/Support" class="btn btn-dark btn-rounded"><i class="far fa-question-circle"></i> Support</a>
+        <router-link to="/support" class="btn btn-dark btn-rounded"><i class="far fa-question-circle"/> Support</router-link>
     </div>
 </div>
 </template>
 
 <script>
 export default {
-    name: 'welcome'
+    name: 'welcome',
+    data() {
+        return {
+            wallettype: 1
+        }
+    },
 }
 </script>
 
