@@ -11,7 +11,7 @@
                         <h3>Make transfer</h3>
                     </div>
                     <div class="card-body">
-                        <form @submit="transfer">
+                        <form id="miForm" @submit="transfer">
                             <div class="form-group">
                                 <label for="destWallet">Destination Wallet</label>
                                 <input name="destWallet" id="destWallet" type="text" class="form-control" placeholder="Destination Wallet" v-model="destWallet" required/>
@@ -49,7 +49,7 @@ export default {
     components: {
         NavBarWallet
     },
-    data(){
+    data() {
         return {
             name: localStorage.getItem('name'),
             wallet: null,
@@ -103,17 +103,21 @@ export default {
                     if(response.status !== 201) {
                         alert("Transfer storage error");
                     } else {
+                        this.cleanForm();
                         alert("Movement done correctly");
                     }
-                }).catch(error =>{
+                }).catch(error => {
                     if(error.response.status !== 201){
                         alert(error.response.data);
                     }
                 });
-            event.preventDefault( );
-            return true;
+            event.preventDefault();
+            return false;
+        },
+        cleanForm() {
+            document.getElementById("miForm").reset();
         }
-    } 
+    }
 }
 </script>
 

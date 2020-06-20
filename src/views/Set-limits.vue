@@ -17,26 +17,26 @@
                     </div>
                     <!--starts card body-->        
                     <div class="card-body">
-                        <form>
+                        <form @submit="update">
                             <div class="form-group">
                                 <label for="account">Account</label>
-                                <input name="account" id="account" type="text" class="form-control" :placeholder="this.account" disabled required/>
+                                <input name="account" id="account" type="text" class="form-control" :placeholder="this.user.Wal_id" disabled required/>
                             </div>
                             <div class="form-group">
                                 <label for="state">State</label>
-                                <select id="state" class="browser-default custom-select">
+                                <select id="state" class="browser-default custom-select" v-model="state" required>
                                     <option disabled selected>Choose</option>
-                                    <option value="Actived">Actived</option>
-                                    <option value="Disable">Disable</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Disabl">Inactive</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="movement-limit">New Movement Limit</label>
-                                <input name="movement-limit" id="movement-limit" type="text" class="form-control" placeholder="New Movement Limit" v-model="movementLimit" required/>
+                                <input name="movement-limit" id="movement-limit" type="number" class="form-control" placeholder="New Movement Limit" v-model="movementLimit" required/>
                             </div>
                             <div class="form-group">
                                 <label for="month-limit">New Month Limit</label>
-                                <input name="month-limit" id="month-limit" type="text" class="form-control" placeholder="New Month Limit" v-model="monthLimith" required/>
+                                <input name="month-limit" id="month-limit" type="number" class="form-control" placeholder="New Month Limit" v-model="monthLimith" required/>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
@@ -64,7 +64,9 @@
 </template>
 
 <script>
+import axios from 'axios'
 import NavBarWallet from '../components/NavBarWallet.vue'
+
 export default {
     name: 'setLimits',
     components: {
@@ -74,17 +76,53 @@ export default {
         return {
             name: localStorage.getItem('name'),
             link: '/wallet-enterprise',
-            account: null
+            user: null,
+            state: null,
+            movementLimit: null,
+            monthLimith: null,
+            password: '',
+            response: null
         }
     },
     props: {
-        accountProp: {
-            type: String,
+        userProp: {
+            type: Object,
             required: true
-        }
+        },
     },
     mounted() {
-        this.account = this.accountProp
+        this.user = this.userProp
+    },
+    methods: {
+        update(event) {
+            const path = '/wallet/edit/' + this.user.possess.Usr_username + '/' + this.user.Wal_id
+            
+            axios.put(this.$store.state.backURL + path, 
+                {
+                    state: this.state,
+                    new_movement_limit: this.movementLimit,
+                    new_month_limit: this.monthLimith,
+                    password: this.password,
+                },
+                {
+                    headers: {
+                        'access-token': localStorage.getItem('token')
+                    } 
+                }
+                ).then(response => {
+                    if(response.status !== 200) {
+                            alert("Wallet status update error");
+                        } else {
+                            alert("Wallet status update correctly");
+                        }
+                }).catch(error => {
+                    if(error.response.status !== 200){
+                            alert(error.response.data);
+                    }
+                });
+            event.preventDefault( );
+            return true;
+        }
     }
 }
 </script>

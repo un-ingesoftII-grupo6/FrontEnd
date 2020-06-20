@@ -27,7 +27,7 @@
                                             <div class="card-body">
                                                 <label for="username"><b>Account:</b> {{ item.Wal_id }}</label>
                                                 <span class="float-right">
-                                                    <router-link class="btn btn-dark" :to="{name: 'setLimits', params: {accountProp: item.Wal_id}}">
+                                                    <router-link class="btn btn-dark" :to="{name: 'setLimits', params: {userProp: item}}">
                                                         Set state
                                                     </router-link>
                                                     <router-link id="button" to="/make-transfer" class="btn btn-dark">
