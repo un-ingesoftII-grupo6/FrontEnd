@@ -45,6 +45,7 @@
     <div class="container">
         <a href="/Support" class="btn btn-dark btn-rounded"><em class="far fa-question-circle"></em> Support</a>
     </div>
+
 </div>
 </template>
 

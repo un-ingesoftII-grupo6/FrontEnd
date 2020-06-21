@@ -10,15 +10,11 @@
         </div>
         <div class="col -sm-6"> 
         <h3> Social media</h3>
-        <em class="fab fa-facebook-square "></em>
-        <em class="fab fa-instagram "></em>
-        <em class="fab fa-twitter "></em>
+        <em class="fab fa-facebook-square "> </em>
+        <em class="fab fa-instagram "> </em>
+        <em class="fab fa-twitter "> </em>
         <em class="fab fa-youtube "> </em>               
         </div>
     </footer>
 </template>
-<script>
-export default {
-    
-}
-</script>
+
