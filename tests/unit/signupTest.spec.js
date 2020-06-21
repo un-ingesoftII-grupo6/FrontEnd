@@ -20,33 +20,33 @@ describe("signup.vue",()=>{
     it("login card exist",()=>{
         expect(wrapper.find("h3").text()).toBe("Sign up")
     })    
-    it("space for data user in login exist",()=>{
+    it("Text asserts for view",()=>{
         expect(wrapper.find("div").text()).toBe("Sign up Name  Last Name  Email  Username  Password  Confirm Password     You are already registered, enter here.")
     })
-    it("space for data user in login exist",()=>{
+    it("Into specific space in divs for correct views",()=>{
         expect(wrapper.find("label").text()).toBe("Name")
     })
     //To test username and password you can connect or no data base
     //If you dont connect data bse use these
-    it("user space form signup name",()=>{
+    it("Data name user",()=>{
         expect(wrapper.vm.$data.name).toBe("");
     })
-    it("user space form signup surname",()=>{
+    it("Surname used by user",()=>{
         expect(wrapper.vm.$data.surname).toBe("");
     })
-    it("user space form signup email",()=>{
+    it("Email user",()=>{
         expect(wrapper.vm.$data.email).toBe("");
     })
-    it("user space form signup username",()=>{
+    it("Username for wallet",()=>{
         expect(wrapper.vm.$data.username).toBe("");
     })
-    it("user space form signup password",()=>{
+    it("Password wallet",()=>{
         expect(wrapper.vm.$data.password).toBe("");
     })
-    it("user space form signup cPassword",()=>{
+    it("Confirma password in wallet",()=>{
         expect(wrapper.vm.$data.cPassword).toBe("");
     })
-    it("user space form signup name",()=>{
+    it("Responsive name for this user",()=>{
         expect(wrapper.vm.$data.response).toBe(null);
     })
 

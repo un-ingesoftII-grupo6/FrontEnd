@@ -14,7 +14,7 @@ describe("Login.vue",()=>{
     it("login card exist",()=>{
         expect(wrapper.find("h3").text()).toBe("Log in")
     })    
-    it("space for data user in login exist",()=>{
+    it("space div text",()=>{
         expect(wrapper.find("div").text()).toBe("Log in Username  Password")
     })
     it("space for data user in login exist",()=>{
@@ -22,16 +22,16 @@ describe("Login.vue",()=>{
     })
     //To test username and password you can connect or no data base
     //If you dont connect data bse use these
-    it("user use login button",()=>{
+    it("user username data",()=>{
         expect(wrapper.vm.$data.username).toBe("");
     })
-    it("user use login button",()=>{
+    it("user password data",()=>{
         expect(wrapper.vm.$data.password).toBe("");
     })
-    it("user use login button",()=>{
+    it("user for wallet",()=>{
         expect(wrapper.vm.$data.user).toBe(null);
     })
-    it("user use login button",()=>{
+    it("Response data for user",()=>{
         expect(wrapper.vm.$data.response).toBe(null);
     })
     //If you connect data bse use these
