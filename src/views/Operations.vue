@@ -3,11 +3,10 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
         <div class="col">
             <h2 class="text-dark">
-                <a class="text-dark" href="/Wallet"><i class="fas fa-wallet"></i> UN Wallet</a>
+                <a class="text-dark" href="/Wallet"><em class="fas fa-wallet"></em> UN Wallet</a>
                 <span class="float-right">
-                    <!--i class="fas fa-user"></i> <%= name + ' ' + lastName %-->
                     {{ this.user.user.Usr_name}}
-                    <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>
+                    <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><em class="fas fa-sign-out-alt"></em> Log out</a>
                 </span>
             </h2>
         </div>
@@ -19,7 +18,7 @@
             <div class="col -md-0 offset -md-0">
                 <div class="card animated flipInY">
                     <div class="card-header bg-light text-dark">
-                        <h3><i class="fas fa-history"></i> Operations</h3>
+                        <h3><em class="fas fa-history"></em> Operations</h3>
                     </div>
                     <div class="card-body">
                         <div v-if="this.movement.wallets[0].modifies_recipient === this.movement.wallets[0].modifies_sender === null">
@@ -160,7 +159,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>
