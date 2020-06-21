@@ -9,7 +9,7 @@
                 <!--starts card-->        
                 <card class="card">
                     <div class="card-header bg-light text-dark text-left">
-                        <h3><i class="fas fa-balance-scale"></i> Set Limit<span class="float-right"></span></h3>
+                        <h3><em class="fas fa-balance-scale"></em> Set Limit<span class="float-right"></span></h3>
                     </div>
                     <!--starts card body-->        
                     <div class="card-body">
