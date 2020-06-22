@@ -21,7 +21,7 @@ describe("signup.vue",()=>{
         expect(wrapper.find("h3").text()).toBe("Sign up")
     })    
     it("Text asserts for view",()=>{
-        expect(wrapper.find("div").text()).toBe("Sign up Name  Last Name  Email  Username  Password  Confirm Password     You are already registered, enter here.")
+        expect(wrapper.find("div").text()).toBe("Sign up Name  Last Name  Email  Username  Password  Confirm Password")
     })
     //To test username and password you can connect or no data base
     //If you dont connect data bse use these

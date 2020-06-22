@@ -69,11 +69,9 @@
                                 <div>
                                     <input id="button1" type="button" value="Cancel" onclick="history.back()" class="btn btn-danger">
                                     <input id="button1" type="submit" value="Submit" class="btn btn-success float-right">
-                                    <br>                                 
-                                    <a  href="/Login" id="button" >You are already registered, enter here.</a>                                    
+                                    <br>                                                                     
                                 </div>
-                                <a  href="/Login" id="button" >You are already registered, enter here.</a>
-                                <!-- here end buttons-->  
+                                <!-- here end buttons-->
                             </div>
                         </form>
                     </div>

@@ -4,7 +4,7 @@
             <h3 class="text-dark">
                 <router-link style="text-decoration: none;"
                     v-bind:to="this.link" class="text-dark">
-                    <i class="fas fa-wallet"/> UN Wallet</router-link>
+                    <em class="fas fa-wallet"/> UN Wallet</router-link>
                 <span class="float-right">
                     <a v-on:click="logOut" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"/> Log out</a>
                 </span>

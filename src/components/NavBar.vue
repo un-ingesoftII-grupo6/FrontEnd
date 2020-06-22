@@ -4,7 +4,7 @@
             <h2 class="text-dark">
                 <router-link style="text-decoration: none;"
                     :to="this.link" class="text-dark">
-                    <i class="fas fa-wallet"/> UN Wallet</router-link>
+                    <em class="fas fa-wallet"/> UN Wallet</router-link>
             </h2>
         </div>
     </nav>

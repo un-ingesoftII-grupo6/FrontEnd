@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import Maketransfer from "@/views/Asociate-wallets.vue";
+import Maketransfer from "@/views/Associated-wallets.vue";
 //import { shallowMount } from '@vue/test-utils'
 
-describe("Asociate-wallets",()=>{ 
+describe("Associated-wallets",()=>{ 
     const vm  =  new Vue(Maketransfer).$data
     expect(vm.$data).toBe(undefined)
     it('render ',()=>{
