@@ -8,16 +8,13 @@ describe("support.vue",()=>{
 
         })
     })
-    it("renders correctly to suppor view",()=>{
+    it("renders",()=>{
         expect(wrapper.exists()).toBe(true);
     })
-    it("Searching input and buttons test",()=>{
-        expect(wrapper.find("input").exists)
+    it("login card exist",()=>{
+        expect(wrapper.find("h2").text()).toBe("UN Wallet")
     })    
-    it("search label for data",()=>{
-        expect(wrapper.find("label").exists)
-    })
     it("space for data user in login exist",()=>{
-        expect(wrapper.find("div").text()).toBe("Name  Telephone number   Company  Email    How can we help you?")
+        expect(wrapper.find("div").text()).toBe("UN Wallet   Name  Telephone number   Company  Email    How can we help you?")
     })
 })

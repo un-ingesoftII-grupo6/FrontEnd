@@ -12,6 +12,9 @@ describe("welcome.vue",()=>{
         expect(wrapper.exists()).toBe(true);
     })
     it("Set card text for welcome",()=>{
-        expect(wrapper.find("h3").text()).toBe("UN Wallet advantages")
+        expect(wrapper.find("h2").text()).toBe("UN Wallet Log in Sign up")
     })    
+    it("Testing renders and styles",()=>{
+        expect(wrapper.find("a").text()).toBe("UN Wallet")
+    })
 })
