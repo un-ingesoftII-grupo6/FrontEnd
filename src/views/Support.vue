@@ -72,9 +72,9 @@ export default {
     }
 }
 </script>
-
 <style>
 #button1 {
     margin-top: .8em;
 }
 </style>
+

@@ -15,7 +15,6 @@
                             <div v-if="this.movement.wallets[0].modifies_recipient === this.movement.wallets[0].modifies_sender === null">
                                 You don't have any movements
                             </div>
-
                             <div v-if="this.movement.wallets[0].modifies_recipient.length > 0">
                                 <ul id="modifies-recipient">
                                     <h5>Received</h5>
@@ -146,3 +145,4 @@ export default {
   overflow-y: scroll;
 }
 </style>
+

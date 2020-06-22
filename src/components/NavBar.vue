@@ -1,11 +1,11 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
         <div class="col">
-            <h3 class="text-dark">
+            <h2 class="text-dark">
                 <router-link style="text-decoration: none;"
                     :to="this.link" class="text-dark">
                     <i class="fas fa-wallet"/> UN Wallet</router-link>
-            </h3>
+            </h2>
         </div>
     </nav>
 </template>
@@ -29,7 +29,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

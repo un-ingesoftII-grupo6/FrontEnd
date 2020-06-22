@@ -7,7 +7,6 @@
         <nav-bar-wallet linkProp="/wallet-enterprise"/>
     </div>
     <br>
-
     <div class="container p-3">
         <div class="row">
             <div class="col -md-0 offset -md-0">
@@ -73,8 +72,9 @@
                                     <br>                                 
                                     <a  href="/Login" id="button" >You are already registered, enter here.</a>                                    
                                 </div>
+                                <a  href="/Login" id="button" >You are already registered, enter here.</a>
+                                <!-- here end buttons-->  
                             </div>
-                            <!-- here end buttons-->
                         </form>
                     </div>
                 </div>

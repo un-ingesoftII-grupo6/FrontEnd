@@ -63,10 +63,12 @@
                     <!--end card body management wallets-->
                 </card>
                 <!--end card header management wallets-->
+
                 <br>
                 <br>
                 <br>
                 <br>
+
             </div>    
         </div>  
         <!--end card management wallets-->             
@@ -136,6 +138,7 @@ export default {
 </script>
 
 <style>
+
 .overflow-auto {
   max-height: 450px;
   overflow-y: scroll;
