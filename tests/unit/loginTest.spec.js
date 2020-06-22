@@ -8,15 +8,9 @@ describe("Login.vue",()=>{
 
         })
     })
-    it("renders",()=>{
+    it("renders in login view",()=>{
         expect(wrapper.exists()).toBe(true);
-    })
-    it("login card exist",()=>{
-        expect(wrapper.find("h3").text()).toBe("Log in")
-    })    
-    it("space div text",()=>{
-        expect(wrapper.find("div").text()).toBe("Log in Username  Password")
-    })
+    })   
     it("space for data user in login exist",()=>{
         expect(wrapper.find("label").text()).toBe("Username")
     })
