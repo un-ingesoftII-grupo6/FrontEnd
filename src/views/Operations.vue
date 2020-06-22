@@ -1,6 +1,6 @@
 <template>
 <div>
-    <nav-bar-wallet :username="this.name" :linkProp="this.link"/>
+    <nav-bar-wallet :linkProp="this.link"/>
     <br>
 
     <div class="container p-3">
@@ -65,7 +65,6 @@ export default {
     },
     data(){
         return {
-            name: localStorage.getItem('name'),
             movement: null,
             response: null,
             chartdata: null,
@@ -74,7 +73,8 @@ export default {
         }
     },
     beforeCreate() {
-        const pathMovement = '/movement/find/all/' + localStorage.getItem('username');
+        const pathMovement = '/movement/find/all/' + 
+        ((localStorage.getItem('usernameOperations') !== null) ? localStorage.getItem('usernameOperations') : localStorage.getItem('username'));
         axios
             .get(this.$store.state.backURL + pathMovement, {
                 headers: {

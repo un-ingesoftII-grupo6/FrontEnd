@@ -4,7 +4,7 @@
         <nav-bar linkProp="/"/>
     </div>
     <div v-else>
-        <nav-bar-wallet :username="this.nameBar" linkProp="/wallet-enterprise"/>
+        <nav-bar-wallet linkProp="/wallet-enterprise"/>
     </div>
     <br>
 
@@ -104,7 +104,6 @@ export default {
             wtyp_id: null,
             ent_id: null,
             pageName: null,
-            nameBar: localStorage.getItem('name')
         }
     },
     mounted() {

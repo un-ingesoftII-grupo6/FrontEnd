@@ -1,6 +1,6 @@
 <template>
 <div>
-    <nav-bar-wallet :username="this.name" :linkProp="this.link"/>
+    <nav-bar-wallet :linkProp="this.link"/>
     <br>
 
     <!--Select scroll need update -->
@@ -11,14 +11,22 @@
             <!--Here start firstcard -->
             <div class="col">
                 <div class="card">
+                    <div class="card-header text-dark bg-light text-center">                        
+                        <h3>
+                            {{ (this.name.slice(-1) === 's') ? this.name : this.name + "'s" }} Enterprise Wallet
+                        </h3>                                                  
+                    </div>
+                    <div class="card-body text-center">
+                        <span id="idwallet" data-clipboard-action="copy" data-clipboard-target="#idwallet" style="cursor: pointer;">
+                            {{ this.wallet.wallets[0].Wal_id }}
+                        </span>
+                    </div>
+                </div>
+                <br>
+                <div class="card">
                     <div class="card-header text-dark bg-light">                        
                         <h5>
                             <i class="fas fa-history"/> Transaction History
-                            <span class="float-right">
-                                <router-link to="/operations" class="btn btn-dark">
-                                    Operations
-                                </router-link>
-                            </span>
                         </h5>                                                  
                     </div>
                     <div class="card-body">
@@ -64,7 +72,9 @@
                             </span>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">${{ new Intl.NumberFormat("de-DE").format(this.wallet.wallets[0].Wal_balance) }}</h5>
+                            <h5 class="card-title">
+                                ${{ new Intl.NumberFormat("de-DE").format(this.wallet.wallets[0].Wal_balance) }}
+                            </h5>
                         </div>
                     </div>                  
                 </div>
@@ -119,6 +129,8 @@
 <script>
 import axios from 'axios'
 import NavBarWallet from '../components/NavBarWallet.vue'
+import clipboard from 'clipboard'
+new clipboard('#idwallet');
 
 export default {
     name: 'walletEnterprise',

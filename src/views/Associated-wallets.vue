@@ -1,6 +1,6 @@
 <template>
 <div>
-    <nav-bar-wallet :username="this.name" :linkProp="this.link"/>
+    <nav-bar-wallet :linkProp="this.link"/>
     <br>
 
     <div class="col -md-4">
@@ -25,8 +25,10 @@
                                     <div v-for="(item, i) in accounts.users" :key="i">
                                         <div class="card border-info">
                                             <div class="card-body">
-                                                <label for="username"><b>Account:</b> {{ item.Wal_id }}</label>
-                                                <div v-if="typePage === 'manage'">
+                                                <label for="username">
+                                                    <b>Nombre:</b> {{ item.possess.Usr_name + ' ' + item.possess.Usr_surname }}, <b>Username:</b> {{ item.possess.Usr_username }}
+                                                    </label>
+                                                <span v-if="typePage === 'manage'">
                                                     <span class="float-right">
                                                         <router-link class="btn btn-dark" :to="{name: 'setLimits'}">
                                                             <span v-on:click="setlimits(item.Wal_id)">
@@ -39,14 +41,16 @@
                                                             </span>
                                                         </router-link>
                                                     </span> 
-                                                </div>
-                                                <div v-else-if="typePage === 'history'">
+                                                </span>
+                                                <span v-else-if="typePage === 'history'">
                                                     <span class="float-right">
                                                         <router-link class="btn btn-dark" :to="{name: 'operations'}">
-                                                            History
+                                                            <span v-on:click="operationsWalletAssociated(item.possess.Usr_username)">
+                                                                History
+                                                            </span>
                                                         </router-link>
                                                     </span>
-                                                </div>                           
+                                                </span>                           
                                             </div>                               
                                         </div> 
                                         <br>
@@ -81,7 +85,6 @@ export default {
     },
     data() {
         return {
-            name: localStorage.getItem('name'),
             link: '/wallet-enterprise',
             accounts: null,
             response: null,
@@ -123,6 +126,10 @@ export default {
             localStorage.removeItem('destWalletMakeTransfer');
             localStorage.setItem('namePageMakeTransfer', item1);
             localStorage.setItem('destWalletMakeTransfer', item2);
+        },
+        operationsWalletAssociated(item) {
+            localStorage.removeItem('usernameOperations');
+            localStorage.setItem('usernameOperations', item);
         }
     } 
 }

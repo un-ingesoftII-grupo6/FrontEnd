@@ -1,6 +1,6 @@
 <template>
 <div>
-    <nav-bar-wallet :username="this.name" :linkProp="this.link"/>
+    <nav-bar-wallet :linkProp="this.link"/>
     <br>
 
     <div class="container p-4">
@@ -55,7 +55,6 @@ export default {
     },
     data() {
         return {
-            name: localStorage.getItem('name'),
             wallet: null,
             destWallet: null,
             wal_id_sender: '',
