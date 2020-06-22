@@ -4,9 +4,9 @@
         <div class="container">
             <div class="col">
                 <h2 class="text-dark">
-                    <a class="text-dark" href="/"><em class="fas fa-wallet"></em> UN Wallet</a>
+                    <a class="text-dark" href="/"><i class="fas fa-wallet"></i> UN Wallet</a>
                     <span class="float-right">
-                        <em class="fas fa-user"></em>
+                        <i class="fas fa-user"></i> <!--%= name + ' ' + lastName %-->                    
                     </span>
                 </h2>
             </div>
@@ -59,9 +59,8 @@
                     </div>
                 </div>                                                                
                 <div class="form-group text-center">
-                    <div>
-                        <input id="button1" type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">                           
-                        <input id="button2" type="submit" value="Send" class="btn btn-success btn-success">
+                    <div>                                
+                        <input id="button2" type="submit" value="Send" class="btn btn-success btn-dark">
                     </div>
                 </div>                        
             </form>
@@ -75,3 +74,7 @@ export default {
 
 }
 </script>
+
+<style>
+
+</style>

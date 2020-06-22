@@ -4,9 +4,9 @@
         <div class="container">
             <div class="col">
                 <h2 class="text-dark">
-                    <a class="text-dark" href="/Wallet-enterprise"><em class="fas fa-wallet"></em> UN Wallet</a>
+                    <a class="text-dark" href="/Wallet-enterprise"><i class="fas fa-wallet"></i> UN Wallet</a>
                     <span class="float-right">
-                        <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><em class="fas fa-sign-out-alt"></em> Log out</a>                       
+                        <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>                       
                     </span>
                 </h2>
             </div>
@@ -29,7 +29,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header text-dark bg-light">                        
-                            <h5><em class="fas fa-history"></em> Transaction history<span class="float-right"><button class="btn btn-dark">Operations</button></span></h5>                                                  
+                            <h5><i class="fas fa-history"></i> Transaction history<span class="float-right"><button class="btn btn-dark">Operations</button></span></h5>                                                  
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"></h5>
@@ -57,10 +57,10 @@
                         <div class="card">
                             <div class="card-header text-dark bg-light" >
                                 <span class="float-left">
-                                    <h5 class="card-title"><em class="fas fa-balance-scale"></em>  Total Balance</h5>
+                                    <h5 class="card-title"><i class="fas fa-balance-scale"></i>  Total Balance</h5>
                                 </span>
                             </div>
-                            <div class="card-body-balance">
+                            <div class="card-body">
                                 BALANCE ASIGNADO                             
                             </div>
                         </div>                        
@@ -69,10 +69,10 @@
                         <div class="card">
                             <div class="card-header text-dark bg-light" >
                                 <span class="float-left">
-                                    <h5 class="card-title"><em class="fas fa-balance-scale"></em>  Available Balance</h5>
+                                    <h5 class="card-title"><i class="fas fa-balance-scale"></i>  Available Balance</h5>
                                 </span>
                             </div>
-                            <div class="card-body-"> 
+                            <div class="card-body"> 
                                 MAXIMO BALANCE                              
                             </div>
                         </div>                        
@@ -80,8 +80,8 @@
                     <div class="card animated pulse">
                         <div class="card">
                             <div class="card-header text-dark bg-light">                        
-                             <h5><em class="fas fa-balance-scale"></em> Set Limits<span class="float-right"><button class="btn btn-dark"> SET</button></span></h5><br>
-                             <h5><em class="fas fa-balance-scale"></em> Add Founds<span class="float-right"><button class="btn btn-dark">ADD</button></span></h5>                                                 
+                             <h5><i class="fas fa-balance-scale"></i> Set Limits<span class="float-right"><button class="btn btn-dark"> SET</button></span></h5><br>
+                             <h5><i class="fas fa-balance-scale"></i> Add Founds<span class="float-right"><button class="btn btn-dark">ADD</button></span></h5>                                                 
                             </div>
                         </div>                        
                     </div><br>                                         
@@ -91,3 +91,11 @@
         </div>       
 </div>
 </template>
+
+<script>
+
+</script>
+
+<style>
+
+</style>

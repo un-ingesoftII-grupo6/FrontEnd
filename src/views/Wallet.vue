@@ -3,10 +3,11 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
         <div class="col">
             <h2 class="text-dark">
-                <a class="text-dark" href="/Wallet"><em class="fas fa-wallet"></em> UN Wallet</a>
+                <a class="text-dark" href="/Wallet"><i class="fas fa-wallet"></i> UN Wallet</a>
                     <span class="float-right">
+                        <!--i class="fas fa-user"></i> <%= name + ' ' + lastName %-->
                         {{this.user.user.Usr_name}}
-                    <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><em class="fas fa-sign-out-alt"></em> Log out</a>
+                    <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>
                 </span>
             </h2>
         </div>
@@ -27,7 +28,7 @@
                             </span>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"><em class="fas fa-balance-scale"></em> Balance</h5>
+                            <h5 class="card-title"><i class="fas fa-balance-scale"></i> Balance</h5>
                             <p class="card-text">${{this.wallet.wallets[0].Wal_balance}}</p>
                         </div>
                     </div>
@@ -35,7 +36,7 @@
                 <br>
                 <!--Here start second card -->
                 <div class="card">
-                    <h5 class="card-header text-dark bg-light "><em class="fas fa-dollar-sign"></em> Make Transfer</h5>
+                    <h5 class="card-header text-dark bg-light "><i class="fas fa-dollar-sign"></i> Make Transfer</h5>
                     <div class="card-body">
                         <h5 class="card-title">Easy and Fast</h5>
                         <p class="card-text">Seen money card example here we can put 
@@ -49,7 +50,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-dark bg-light">                        
-                        <h5><em class="fas fa-history"></em> Transaction History<span class="float-right"><a href="/Operations" class="btn btn-dark">Operations</a></span></h5>                                                  
+                        <h5><i class="fas fa-history"></i> Transaction History<span class="float-right"><a href="/Operations" class="btn btn-dark">Operations</a></span></h5>                                                  
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"></h5>
@@ -155,3 +156,7 @@ export default {
     } 
 }
 </script>
+
+<style>
+
+</style>

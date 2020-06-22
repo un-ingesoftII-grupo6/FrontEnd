@@ -1,6 +1,8 @@
 <template>
 <div>
     <NavBar/>
+    <br>
+
     <div class="container p-3">
         <div class="row">
             <div class="col -md-0 offset -md-0">
@@ -17,56 +19,54 @@
                                         <input name="name" id="inputName" type="text" class="form-control" placeholder="Name"
                                             v-model="name" required/>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="inputLastName">Last Name</label>
-                                        <input name="lastName" id="inputLastName" type="text" class="form-control"
-                                            placeholder="Last Name" v-model="surname" required/>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="inputLastName">Last Name</label>
+                                            <input name="lastName" id="inputLastName" type="text" class="form-control"
+                                                placeholder="Last Name" v-model="surname" required/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="inputEmail">Email</label>
-                                        <input name="email" id="inputEmail" type="email" class="form-control"
-                                            placeholder="Email" v-model="email" required/>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="inputEmail">Email</label>
+                                            <input name="email" id="inputEmail" type="email" class="form-control"
+                                                placeholder="Email" v-model="email" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col">    
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input name="username" id="username" type="text" class="form-control" placeholder="Username" v-model="username" required/>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">    
-                                    <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input name="username" id="username" type="text" class="form-control" placeholder="Username" v-model="username" required/>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="confirmPassword">Confirm Password</label>
+                                            <input name="confirmPassword" id="confirmPassword" type="password" class="form-control"
+                                                placeholder="Confirm Pasword" v-model="cPassword" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="inputPassword">Password</label>
+                                            <input name="password" id="inputPassword" type="password" class="form-control"
+                                                placeholder="Password" v-model="password" required/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="inputPassword">Password</label>
-                                        <input name="password" id="inputPassword" type="password" class="form-control"
-                                            placeholder="Password" v-model="password" required/>
+    
+                                <div class="form-group">
+                                    <div>
+                                        <input id="button1" type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">
+                                        <input id="button2" type="submit" value="Submit" class="btn btn-dark">
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="confirmPassword">Confirm Password</label>
-                                        <input name="confirmPassword" id="confirmPassword" type="password" class="form-control"
-                                            placeholder="Confirm Pasword" v-model="cPassword" required/>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <!-- here end card-->
-                            <!-- here start buttons-->  
-                                <div>
-                                    <input id="button1" type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">
-                                    <input id="button2" type="submit" value="Submit" class="btn btn-dark">
-                                </div>   
-                                <br>                                 
-                                <a  href="/Login" id="button" >You are already registered, enter here.</a>
-                                <!-- here end buttons-->                            
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
