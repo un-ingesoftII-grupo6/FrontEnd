@@ -26,7 +26,7 @@
                 <div class="card">
                     <div class="card-header text-dark bg-light">                        
                         <h5>
-                            <i class="fas fa-history"/> Transaction History
+                            <em class="fas fa-history"/> Transaction History
                         </h5>                                                  
                     </div>
                     <div class="card-body">
@@ -68,7 +68,7 @@
                     <div class="card">
                         <div class="card-header text-dark bg-light" >
                             <span class="float-left">
-                                <h5 class="card-title"><i class="fas fa-balance-scale"></i> Total Balance</h5>
+                                <h5 class="card-title"><em class="fas fa-balance-scale"></em> Total Balance</h5>
                             </span>
                         </div>
                         <div class="card-body">
@@ -83,7 +83,7 @@
                     <div class="card">
                         <div class="card-header text-dark bg-light" >
                             <span class="float-left">
-                                <h5 class="card-title"><i class="fas fa-tools"/> Wallet Options</h5>
+                                <h5 class="card-title"><em class="fas fa-tools"/> Wallet Options</h5>
                             </span>
                         </div>
                         <div class="card-body">
@@ -182,7 +182,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

@@ -2,10 +2,10 @@
 <div id="page-content">
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
         <div class="col">
-            <h3 class="text-dark">
+            <h2 class="text-dark">
                 <router-link style="text-decoration: none;"
                     to="/" class="text-dark">
-                    <i class="fas fa-wallet"/> UN Wallet</router-link>
+                    <em class="fas fa-wallet"/> UN Wallet</router-link>
                 <span class="float-right">
                     <router-link to="/login" class="btn btn-dark">Log in</router-link>
                     <router-link id="button" class="btn btn-dark" :to="{name: 'signup'}">
@@ -14,7 +14,7 @@
                         </span>
                     </router-link>
                 </span>
-            </h3>
+            </h2>
         </div>
     </nav>
     <br>
@@ -49,7 +49,7 @@
         <br>
     </div>
     <div class="container">
-        <router-link to="/support" class="btn btn-dark btn-rounded"><i class="far fa-question-circle"/> Support</router-link>
+        <router-link to="/support" class="btn btn-dark btn-rounded"><em class="far fa-question-circle"/> Support</router-link>
     </div>
 </div>
 </template>
@@ -67,7 +67,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

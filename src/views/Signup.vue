@@ -64,12 +64,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- here end card-->
+                            <!-- here start buttons--> 
                             <div class="form-group">
                                 <div>
                                     <input id="button1" type="button" value="Cancel" onclick="history.back()" class="btn btn-danger">
                                     <input id="button1" type="submit" value="Submit" class="btn btn-success float-right">
+                                    <br>                                 
+                                    <a  href="/Login" id="button" >You are already registered, enter here.</a>                                    
                                 </div>
                             </div>
+                            <!-- here end buttons-->
                         </form>
                     </div>
                 </div>
@@ -147,8 +152,4 @@ export default {
             }
         },
     }
-    </script>
-    
-    <style>   
-
-    </style>
+</script>

@@ -8,7 +8,7 @@
             <div class="col -md-0 offset -md-0">
                 <div class="card animated flipInY">
                     <div class="card-header bg-light text-dark">
-                        <h3><i class="fas fa-history"></i> Operations</h3>
+                        <h3><em class="fas fa-history"></em> Operations</h3>
                     </div>
                     <div class="overflow-auto">
                         <div class="card-body">
@@ -20,7 +20,7 @@
                                 <ul id="modifies-recipient">
                                     <h5>Received</h5>
                                     <li v-for="(item, i) in movement.wallets[0].modifies_recipient" :key="i">
-                                        <b>Date:</b> {{ item.Mov_timestamp }}, <b>Sender:</b> {{item.Wal_id_sender}}, <b>Amount:</b> ${{ item.Mov_total_amount}}
+                                        <strong>Date:</strong> {{ item.Mov_timestamp }}, <strong>Sender:</strong> {{item.Wal_id_sender}}, <strong>Amount:</strong> ${{ item.Mov_total_amount}}
                                     </li>
                                 </ul>
                             </div>
@@ -29,7 +29,7 @@
                                 <ul id="modifies_sender">
                                     <h5>Sent</h5>
                                     <li v-for="(item, i) in movement.wallets[0].modifies_sender" :key="i">
-                                        <b>Date:</b> {{ item.Mov_timestamp }}, <b>Recipient:</b> {{item.Wal_id_recipient}}, <b>Amount:</b> ${{ new Intl.NumberFormat("de-DE").format(item.Mov_total_amount) }}
+                                        <strong>Date:</strong> {{ item.Mov_timestamp }}, <strong>Recipient:</strong> {{item.Wal_id_recipient}}, <strong>Amount:</strong> ${{ new Intl.NumberFormat("de-DE").format(item.Mov_total_amount) }}
                                     </li>
                                 </ul>
                             </div>

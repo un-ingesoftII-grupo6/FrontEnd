@@ -23,7 +23,7 @@
                 <br>
                 <!--Here start second card -->
                 <div class="card">
-                    <h5 class="card-header text-dark bg-light "><i class="fas fa-dollar-sign"></i> Make Transfer</h5>
+                    <h5 class="card-header text-dark bg-light "><em class="fas fa-dollar-sign"></em> Make Transfer</h5>
                     <div class="card-body">
                         <h5 class="card-title">Easy and Fast</h5>
                         <p class="card-text">
@@ -44,7 +44,7 @@
                 <div class="card">
                     <div class="card-header text-dark bg-light">
                         <span class="float-left">
-                            <h5 class="card-title"><i class="fas fa-balance-scale"></i> Balance</h5>
+                            <h5 class="card-title"><em class="fas fa-balance-scale"></em> Balance</h5>
                         </span>
                     </div>
                     <div class="card-body">
@@ -57,7 +57,7 @@
                 <div class="card">
                     <div class="card-header text-dark bg-light">                        
                         <h5>
-                            <i class="fas fa-history"/> Transaction History
+                            <em class="fas fa-history"/> Transaction History
                         </h5>                                                  
                     </div>
                     <div class="card-body">
@@ -130,7 +130,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>
