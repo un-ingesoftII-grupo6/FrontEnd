@@ -1,5 +1,5 @@
 import Welcome from "@/views/Welcome.vue";
-import { shallowMount, mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 
 describe("welcome.vue",()=>{
     let wrapper;
