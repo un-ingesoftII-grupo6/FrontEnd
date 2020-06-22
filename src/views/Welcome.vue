@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
         <div class="col">
             <h2 class="text-dark">
-                <a class="text-dark" href="/"><i class="fas fa-wallet"></i> UN Wallet</a>
+                <a class="text-dark" href="/"><em class="fas fa-wallet"></em> UN Wallet</a>
                 <span class="float-right">
                     <a href="/Login" class="btn btn-dark">Log in</a>
                     <a href="/Signup" id="button" class="btn btn-dark">Sign up</a>
@@ -43,7 +43,7 @@
         <br>
     </div>
     <div class="container">
-        <a href="/Support" class="btn btn-dark btn-rounded"><i class="far fa-question-circle"></i> Support</a>
+        <a href="/Support" class="btn btn-dark btn-rounded"><em class="far fa-question-circle"></em> Support</a>
     </div>
 
 </div>
