@@ -25,7 +25,7 @@
                                 <br>
                                 <div class="form-group">
                                     <input id="button1" type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">
-                                    <input  id="button2" type="submit" value="Submit" class="btn btn-dark">
+                                    <input  id="button2" type="button" value="Submit" class="btn btn-dark">
                                 </div>
                             </div>
                         </form>
@@ -72,12 +72,15 @@
                         alert("Authentication error");
                     } else {
                         localStorage.setItem('username', this.username);
-                        if(response.data.user.possess[0].Wtyp_id !== 2){
-                            this.$router.push( {name: 'wallet'});
+                        if(typeof(response.data.user) === "object") {
+                            if(response.data.user.possess[0].Wtyp_id !== 2){
+                                this.$router.push( {name: 'wallet'});
+                            } 
                         } else {
-                            this.$router.push( {name: 'walletEnterprise'});
+                            if(response.data.enterprise !== null) {
+                                this.$router.push( {name: 'walletEnterprise'});
+                            }
                         }
-                        
                     }
                 }).catch(error => {
                         if( error.response.status !== 201 ){
