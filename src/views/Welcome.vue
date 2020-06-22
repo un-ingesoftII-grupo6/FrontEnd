@@ -3,10 +3,16 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
         <div class="col">
             <h2 class="text-dark">
-                <a class="text-dark" href="/"><em class="fas fa-wallet"></em> UN Wallet</a>
+                <router-link style="text-decoration: none;"
+                    to="/" class="text-dark">
+                    <em class="fas fa-wallet"/> UN Wallet</router-link>
                 <span class="float-right">
-                    <a href="/Login" class="btn btn-dark">Log in</a>
-                    <a href="/Signup" id="button" class="btn btn-dark">Sign up</a>
+                    <router-link to="/login" class="btn btn-dark">Log in</router-link>
+                    <router-link id="button" class="btn btn-dark" :to="{name: 'signup'}">
+                        <span v-on:click="signup(1, 'Sign up')">
+                            Sign up
+                        </span>
+                    </router-link>
                 </span>
             </h2>
         </div>
@@ -22,7 +28,7 @@
                 <div class="card animated pulse">
                     <div class="card">
                         <div class="card-header text-dark bg-light text-center">
-                            <h3>UN wallet advantages</h3>
+                            <h3>UN Wallet advantages</h3>
                         </div>
                         <div class="card-body">
                             <ul>
@@ -43,20 +49,21 @@
         <br>
     </div>
     <div class="container">
-        <a href="/Support" class="btn btn-dark btn-rounded"><em class="far fa-question-circle"></em> Support</a>
+        <router-link to="/support" class="btn btn-dark btn-rounded"><em class="far fa-question-circle"/> Support</router-link>
     </div>
-
 </div>
 </template>
 
 <script>
 export default {
-    name: "welcome"
+    name: 'welcome',
+    methods: {
+        signup(item1, item2) {
+            localStorage.removeItem('wallettypeSignup');
+            localStorage.removeItem('nameSignup');
+            localStorage.setItem('wallettypeSignup', item1);
+            localStorage.setItem('nameSignup', item2);
+        }
+    }
 }
 </script>
-
-<style>
-#button {
-    margin-left: .8em;
-}
-</style>
