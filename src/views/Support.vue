@@ -1,17 +1,6 @@
 <template>
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <div class="container">
-            <div class="col">
-                <h2 class="text-dark">
-                    <a class="text-dark" href="/"><em class="fas fa-wallet"></em> UN Wallet</a>
-                    <span class="float-right">
-                        <em class="fas fa-user"></em>
-                    </span>
-                </h2>
-            </div>
-        </div>
-    </nav>
+    <nav-bar linkProp="/"/>
     <br>
     <div class="container p-3">
         <div class="bg-white p-3 -md-0 rounded">              
@@ -59,9 +48,9 @@
                     </div>
                 </div>                                                                
                 <div class="form-group text-center">
-                    <div>
-                        <input id="button1" type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">                           
-                        <input id="button2" type="submit" value="Send" class="btn btn-success btn-success">
+                    <div>                                
+                        <input id="button1" type="button" value="Cancel" onclick="history.back()" class="btn btn-danger">
+                        <input id="button1" type="submit" value="Submit" class="btn btn-success float-right">
                     </div>
                 </div>                        
             </form>
@@ -71,7 +60,18 @@
 </template>
 
 <script>
-export default {
+import NavBar from '../components/NavBar.vue'
 
+export default {
+    name: 'Support',
+    components: {
+        NavBar
+    }
 }
 </script>
+
+<style>
+#button1 {
+    margin-top: .8em;
+}
+</style>

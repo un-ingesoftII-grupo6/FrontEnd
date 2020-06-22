@@ -1,18 +1,6 @@
 <template>
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <div class="container">
-            <div class="col">
-                <h2 class="text-dark">
-                    <a class="text-dark" href="/Wallet"><em class="fas fa-wallet"></em> UN Wallet</a>
-                    <span class="float-right">
-                        {{this.user.user.Usr_name}}
-                        <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><em class="fas fa-sign-out-alt"></em> Log out</a>                    
-                    </span>
-                </h2>
-            </div>
-        </div>
-    </nav>
+    <nav-bar-wallet :linkProp="this.link"/>
     <br>
 
     <div class="container p-4">

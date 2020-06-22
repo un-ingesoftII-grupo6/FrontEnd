@@ -1,16 +1,6 @@
 <template>
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <div class="col">
-            <h2 class="text-dark">
-                <a class="text-dark" href="/Wallet"><em class="fas fa-wallet"></em> UN Wallet</a>
-                <span class="float-right">
-                    {{ this.user.user.Usr_name}}
-                    <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><em class="fas fa-sign-out-alt"></em> Log out</a>
-                </span>
-            </h2>
-        </div>
-    </nav>
+    <nav-bar-wallet :linkProp="this.link"/>
     <br>
 
     <div class="container p-3">
@@ -67,40 +57,29 @@ import axios from 'axios';
 import LineChart from "../components/LineChart.js"
 
 export default {
-    name: "Operations",
+    name: 'Operations',
     components: {
-        LineChart
+        LineChart,
+        NavBarWallet
     },
     data(){
         return {
-            user: null,
             movement: null,
             response: null,
             chartdata: null,
-            options: null
+            options: null,
+            link: '/wallet'
         }
     },
     beforeCreate() {
-        const pathUser = '/user/find/' + localStorage.getItem('username');
+        const pathMovement = '/movement/find/all/' + 
+        ((localStorage.getItem('usernameOperations') !== null) ? localStorage.getItem('usernameOperations') : localStorage.getItem('username'));
         axios
-            .get(this.$store.state.backURL + pathUser)
-            .then(response => {
-                if(response.status !== 200) {
-                    alert("Request error");
-                } else {
-                    this.user = response.data;
+            .get(this.$store.state.backURL + pathMovement, {
+                headers: {
+                    'access-token': localStorage.getItem('token')
                 }
-            }).catch(error => {
-                if(error.status === 500) {
-                    alert("Server error");
-                } else {
-                    alert("Backent conection impossible");
-                }
-            });
-
-            const pathMovement = '/movement/find/all/' + localStorage.getItem('username');
-        axios
-            .get(this.$store.state.backURL + pathMovement)
+            })
             .then(response => {
                 if(response.status !== 200) {
                     alert("Request error");
@@ -159,3 +138,10 @@ export default {
     }
 }
 </script>
+
+<style>
+.overflow-auto {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+</style>

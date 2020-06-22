@@ -1,6 +1,6 @@
 <template>
 <div>
-    <NavBar/>
+    <nav-bar linkProp="/"/>
     <br>
     
     <div class="container p-4">
@@ -24,8 +24,8 @@
                             <div class="form-group">
                                 <br>
                                 <div class="form-group">
-                                    <input id="button1" type="button" value="Go Back" onclick="history.back()" class="btn btn-dark">
-                                    <input  id="button2" type="button" value="Submit" class="btn btn-dark">
+                                    <input id="button1" type="button" value="Cancel" onclick="history.back()" class="btn btn-dark">
+                                    <input  id="button1" type="button" value="Submit" class="btn btn-dark">
                                 </div>
                             </div>
                         </form>
@@ -45,62 +45,56 @@
     import NavBar from "../components/NavBar.vue"
 
     const path = "/user/login";
-    
-    export default {
-        name: "Login",
-        components: {
-            NavBar
-        },
-        data(){
-            return {
-                username: '',
-                password: '',
-                user: null,                
-                response: null
-            }
-        },
-        methods: {
-            login(event) {
-                axios
-                .post(this.$store.state.backURL + path,
-                    {
-                        username: this.username.trim(),
-                        password: this.password
-                    }
-                ).then(response => {
-                    if(response.status !== 200) {
-                        alert("Authentication error");
+
+export default {
+    name: "Login",
+    components: {
+        NavBar
+    },
+    data(){
+        return {
+            username: '',
+            password: '',
+            user: null,                
+            response: null
+        }
+    },
+    methods: {
+        login(event) {
+            axios
+            .post(this.$store.state.backURL + path,
+                {
+                    username: this.username.trim(),
+                    password: this.password
+                }
+            ).then(response => {
+                if(response.status !== 200) {
+                    alert("Authentication error");
+                } else {
+                    localStorage.clear()
+                    localStorage.setItem('username', this.username);
+                    localStorage.setItem('token', response.data.token);
+                    
+                    if(typeof(response.data.user) === "object") {
+                        localStorage.setItem('name', response.data.user.Usr_name);
+                        if(response.data.user.possess[0].Wtyp_id !== 2){
+                            this.$router.push( {name: 'wallet'});
+                        } 
                     } else {
-                        localStorage.setItem('username', this.username);
-                        if(typeof(response.data.user) === "object") {
-                            if(response.data.user.possess[0].Wtyp_id !== 2){
-                                this.$router.push( {name: 'wallet'});
-                            } 
-                        } else {
-                            if(response.data.enterprise !== null) {
-                                this.$router.push( {name: 'walletEnterprise'});
-                            }
+                        localStorage.setItem('name', response.data.enterprise.Ent_name);
+                        if(response.data.enterprise !== null) {
+                            this.$router.push( {name: 'walletEnterprise'});
                         }
                     }
-                }).catch(error => {
-                        if( error.response.status !== 201 ){
-                            alert(error.response.data);
-                        }
-                });
-                event.preventDefault();
-                return true;
-            }
+                }
+            }).catch(error => {
+                    if( error.response.status !== 201 ){
+                        alert(error.response.data);
+                    }
+            });
+            event.preventDefault();
+            return true;
         }
     }
+}
 </script>
-
-<style>
-    #button1 {
-        margin-top: .8em;
-    }
-
-    #button2 {
-        margin-top: .8em;
-        margin-left: .8em;
-    }
-</style>
