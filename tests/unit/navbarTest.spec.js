@@ -4,7 +4,11 @@ describe("NavBar.vue",()=>{
     let wrapper;
     beforeEach(()=>{
         wrapper =shallowMount(NavBar,{
-
+            stubs: ['router-link', 'router-view'],
+            props:['linkProp'],
+            propsData: {
+                required: true,
+            }
         })
     })
     it("renders",()=>{

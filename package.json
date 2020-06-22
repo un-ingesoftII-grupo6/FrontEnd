@@ -24,7 +24,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
     "@vue/cli-plugin-eslint": "~4.3.0",
-    "@vue/cli-plugin-unit-jest": "^4.4.4",
+    "@vue/cli-plugin-unit-jest": "^4.4.5",
     "@vue/cli-service": "~4.3.0",
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
@@ -46,6 +46,15 @@
     },
     "rules": {},
     "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      },
       {
         "files": [
           "**/__tests__/*.{j,t}s?(x)",

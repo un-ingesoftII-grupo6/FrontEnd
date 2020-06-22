@@ -5,8 +5,17 @@ describe("Login.vue",()=>{
     let wrapper;
     beforeEach(()=>{
         wrapper =shallowMount(Login,{
-
-        })
+            stubs: ['linkProp', 'nav-bar','router-link'],          
+        })        
+    })
+    it("testing components in login ",()=>{
+        expect(wrapper.find("nav-bar").exists())
+    }) 
+    it("testing components in login ",()=>{
+        expect(wrapper.find("form").exists())
+    })
+    it("Text in login ",()=>{
+        expect(wrapper.find("div").text()).toBe("Log in Username  Password")
     })
     it("renders in login view",()=>{
         expect(wrapper.exists()).toBe(true);
@@ -29,17 +38,17 @@ describe("Login.vue",()=>{
         expect(wrapper.vm.$data.response).toBe(null);
     })
     //If you connect data bse use these
-    /*it("user use login button",()=>{
-        expect(wrapper.vm.$data.username).toBe(true);
+    it("user username testing true",()=>{
+        expect(wrapper.vm.$data.username).toBe("");
     })
-    it("user use login button",()=>{
-        expect(wrapper.vm.$data.password).toBe(true);
+    it("user password true",()=>{
+        expect(wrapper.vm.$data.password).toBe("");
     })
-    it("user use login button",()=>{
-        expect(wrapper.vm.$data.user).toBe(true);
+    it("user test true asgination",()=>{
+        expect(wrapper.vm.$data.user).toBe(null);
     })
-    it("user use login button",()=>{
-        expect(wrapper.vm.$data.response).toBe(true);
-    })*/
+    it("user response true test",()=>{
+        expect(wrapper.vm.$data.response).toBe(null);
+    })
 
 })

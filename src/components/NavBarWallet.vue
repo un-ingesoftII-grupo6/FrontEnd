@@ -6,7 +6,7 @@
                     v-bind:to="this.link" class="text-dark">
                     <em class="fas fa-wallet"/> UN Wallet</router-link>
                 <span class="float-right">
-                    <a v-on:click="logOut" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"/> Log out</a>
+                    <a v-on:click="logOut" href="/" class="btn btn-dark"><em class="fas fa-sign-out-alt"/> Log out</a>
                 </span>
             </h3>
         </div>

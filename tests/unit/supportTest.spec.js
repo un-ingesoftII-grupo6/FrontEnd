@@ -5,16 +5,16 @@ describe("support.vue",()=>{
     let wrapper;
     beforeEach(()=>{
         wrapper =shallowMount(support,{
-
+            stubs: ['linkProp', 'nav-bar']
         })
     })
-    it("renders",()=>{
+    it("renders support test",()=>{
         expect(wrapper.exists()).toBe(true);
     })
     it("login card exist",()=>{
-        expect(wrapper.find("h2").text()).toBe("UN Wallet")
-    })    
+        expect(wrapper.find("nav-bar").exists())
+    })
     it("space for data user in login exist",()=>{
-        expect(wrapper.find("div").text()).toBe("UN Wallet   Name  Telephone number   Company  Email    How can we help you?")
+        expect(wrapper.find("div").text()).toBe("Name  Telephone number  Company  Email   How can we help you?")
     })
 })
