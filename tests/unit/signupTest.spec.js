@@ -17,7 +17,7 @@ describe("signup.vue",()=>{
     it("renders",()=>{
         expect(wrapper.exists()).toBe(true);
     })
-    it("login card exist",()=>{
+    it("Signup tittle card exist",()=>{
         expect(wrapper.find("h3").text()).toBe("Sign up")
     })    
     it("Text asserts for view",()=>{
@@ -28,7 +28,7 @@ describe("signup.vue",()=>{
     })
     //To test username and password you can connect or no data base
     //If you dont connect data bse use these
-    it("Data name user",()=>{
+    it("Data or signup user this name",()=>{
         expect(wrapper.vm.$data.name).toBe("");
     })
     it("Surname used by user",()=>{

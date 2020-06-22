@@ -8,7 +8,7 @@ describe("welcome.vue",()=>{
 
         })
     })
-    it("renders",()=>{
+    it("welcome render exist",()=>{
         expect(wrapper.exists()).toBe(true);
     })
     it("Set card text for welcome",()=>{
