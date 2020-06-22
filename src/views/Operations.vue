@@ -1,6 +1,17 @@
 <template>
 <div>
-    <nav-bar-wallet :linkProp="this.link"/>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+        <div class="col">
+            <h2 class="text-dark">
+                <a class="text-dark" href="/Wallet"><i class="fas fa-wallet"></i> UN Wallet</a>
+                <span class="float-right">
+                    <!--i class="fas fa-user"></i> <%= name + ' ' + lastName %-->
+                    {{ this.user.user.Usr_name}}
+                    <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>
+                </span>
+            </h2>
+        </div>
+    </nav>
     <br>
 
     <div class="container p-3">
@@ -8,7 +19,7 @@
             <div class="col -md-0 offset -md-0">
                 <div class="card animated flipInY">
                     <div class="card-header bg-light text-dark">
-                        <h3><em class="fas fa-history"></em> Operations</h3>
+                        <h3><i class="fas fa-history"></i> Operations</h3>
                     </div>
                     <div class="card-body">
                         <div v-if="this.movement.wallets[0].modifies_recipient === this.movement.wallets[0].modifies_sender === null">
@@ -19,7 +30,7 @@
                             <ul id="modifies-recipient">
                                 <h5>Received</h5>
                                 <li v-for="(item, i) in movement.wallets[0].modifies_recipient" :key="i">
-                                    <strong>Date:</strong> {{ item.Mov_timestamp }}, <strong>Sender:</strong> {{item.Wal_id_sender}}, <strong>Amount:</strong> ${{ item.Mov_total_amount}}
+                                    <b>Date:</b> {{ item.Mov_timestamp }}, <b>Sender:</b> {{item.Wal_id_sender}}, <b>Amount:</b> ${{ item.Mov_total_amount}}
                                 </li>
                             </ul>
                         </div>
@@ -28,7 +39,7 @@
                             <ul id="modifies_sender">
                                 <h5>Sent</h5>
                                 <li v-for="(item, i) in movement.wallets[0].modifies_sender" :key="i">
-                                    <strong>Date:</strong> {{ item.Mov_timestamp }}, <strong>Recipient:</strong> {{item.Wal_id_recipient}}, <strong>Amount:</strong> ${{ item.Mov_total_amount }}
+                                    <b>Date:</b> {{ item.Mov_timestamp }}, <b>Recipient:</b> {{item.Wal_id_recipient}}, <b>Amount:</b> ${{ item.Mov_total_amount }}
                                 </li>
                             </ul>
                         </div>
@@ -57,29 +68,40 @@ import axios from 'axios';
 import LineChart from "../components/LineChart.js"
 
 export default {
-    name: 'Operations',
+    name: "Operations",
     components: {
-        LineChart,
-        NavBarWallet
+        LineChart
     },
     data(){
         return {
+            user: null,
             movement: null,
             response: null,
             chartdata: null,
-            options: null,
-            link: '/wallet'
+            options: null
         }
     },
     beforeCreate() {
-        const pathMovement = '/movement/find/all/' + 
-        ((localStorage.getItem('usernameOperations') !== null) ? localStorage.getItem('usernameOperations') : localStorage.getItem('username'));
+        const pathUser = '/user/find/' + localStorage.getItem('username');
         axios
-            .get(this.$store.state.backURL + pathMovement, {
-                headers: {
-                    'access-token': localStorage.getItem('token')
+            .get(this.$store.state.backURL + pathUser)
+            .then(response => {
+                if(response.status !== 200) {
+                    alert("Request error");
+                } else {
+                    this.user = response.data;
                 }
-            })
+            }).catch(error => {
+                if(error.status === 500) {
+                    alert("Server error");
+                } else {
+                    alert("Backent conection impossible");
+                }
+            });
+
+            const pathMovement = '/movement/find/all/' + localStorage.getItem('username');
+        axios
+            .get(this.$store.state.backURL + pathMovement)
             .then(response => {
                 if(response.status !== 200) {
                     alert("Request error");
@@ -140,8 +162,5 @@ export default {
 </script>
 
 <style>
-.overflow-auto {
-  max-height: 400px;
-  overflow-y: scroll;
-}
+
 </style>

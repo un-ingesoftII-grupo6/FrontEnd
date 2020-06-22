@@ -2,9 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
         <div class="col">
             <h2 class="text-dark">
-                <router-link style="text-decoration: none;"
-                    :to="this.link" class="text-dark">
-                    <em class="fas fa-wallet"/> UN Wallet</router-link>
+                <a class="text-dark" href="/"><i class="fas fa-wallet"></i> UN Wallet</a>
             </h2>
         </div>
     </nav>
@@ -15,3 +13,7 @@ export default {
     name: "navBar",
 }
 </script>
+
+<style>
+
+</style>

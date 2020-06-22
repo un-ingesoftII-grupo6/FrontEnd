@@ -1,6 +1,19 @@
 <template>
 <div>
-    <nav-bar-wallet :linkProp="this.link"/>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+        <div class="container">
+            <div class="col">
+                <h2 class="text-dark">
+                    <a class="text-dark" href="/Wallet"><i class="fas fa-wallet"></i> UN Wallet</a>
+                    <span class="float-right">
+                        <!--i class="fas fa-user"></i> <%= name + ' ' + lastName %-->
+                        {{this.user.user.Usr_name}}
+                        <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>                    
+                    </span>
+                </h2>
+            </div>
+        </div>
+    </nav>
     <br>
 
     <div class="container p-4">
@@ -125,3 +138,7 @@ export default {
         } 
 }
 </script>
+
+<style>
+
+</style>

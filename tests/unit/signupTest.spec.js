@@ -14,14 +14,17 @@ describe("signup.vue",()=>{
 
         })
     })
-    it("renders",()=>{
+    it("renders to signup",()=>{
         expect(wrapper.exists()).toBe(true);
     })
-    it("Signup tittle card exist",()=>{
-        expect(wrapper.find("h3").text()).toBe("Sign up")
+    it("No recived signup in correct test for render navbar",()=>{
+        expect(wrapper.find("h3").text()).toBe("")
     })    
+    it("No recived signup in correct test for render navbar",()=>{
+        expect(wrapper.find("h3").exists)
+    }) 
     it("Text asserts for view",()=>{
-        expect(wrapper.find("div").text()).toBe("Sign up Name  Last Name  Email  Username  Password  Confirm Password     You are already registered, enter here.")
+        expect(wrapper.find("div").text()).toBe("Name  Last Name  Email  Username  Password  Confirm Password     You are already registered, enter here.")
     })
     //To test username and password you can connect or no data base
     //If you dont connect data bse use these

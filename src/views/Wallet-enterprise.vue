@@ -1,184 +1,101 @@
 <template>
 <div>
-    <nav-bar-wallet :linkProp="this.link"/>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <div class="col">
+                <h2 class="text-dark">
+                    <a class="text-dark" href="/Wallet-enterprise"><i class="fas fa-wallet"></i> UN Wallet</a>
+                    <span class="float-right">
+                        <a v-on:click="localStorage.setItem('username', null)" href="/" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Log out</a>                       
+                    </span>
+                </h2>
+            </div>
+        </div>
+    </nav>
     <br>
-
     <!--Select scroll need update -->
     <div class="container p-2">
+    <select v-model="selected">
+    <option disabled value="">Please select one</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <!--span class="text-white"> Selected: {{ selected }}</span-->
     </div>  <!--end scroll -->  
     <div class="container p-2">
-        <div class="row pt-6">
-            <!--Here start firstcard -->
-            <div class="col">
-                <div class="card">
-                    <div class="card-header text-dark bg-light text-center">                        
-                        <h3>
-                            {{ (this.name.slice(-1) === 's') ? this.name : this.name + "'s" }} Enterprise Wallet
-                        </h3>                                                  
-                    </div>
-                    <div class="card-body text-center">
-                        <span id="idwallet" data-clipboard-action="copy" data-clipboard-target="#idwallet" style="cursor: pointer;">
-                            {{ this.wallet.wallets[0].Wal_id }}
-                        </span>
-                    </div>
-                </div>
-                <br>
-                <div class="card">
-                    <div class="card-header text-dark bg-light">                        
-                        <h5>
-                            <i class="fas fa-history"/> Transaction History
-                        </h5>                                                  
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">
-                            Keep the transaction history of both you and the wallets associated with your enterprise wallet handy.
-                        </p> 
-                        <ul>
-                            <li>
-                                <p class="card-text">                  
-                                    Show my history
-                                    <span class="float-right">
-                                        <router-link :to="{name: 'operations'}" class="btn btn-dark btn-sm">
-                                            Show
-                                        </router-link>
-                                    </span>
-                                </p>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <p class="card-text">
-                                    Show history of my associated wallets
-                                    <span class="float-right">
-                                        <router-link class="btn btn-dark btn-sm" :to="{name: 'associatedWallets'}">
-                                            <span v-on:click="associatedWallets('history')">
-                                                Show
-                                            </span>
-                                        </router-link>
-                                    </span>
-                                </p>
-                            </li>
-                        </ul>
+            <div class="row pt-6">
+                <!--Here start firstcard -->
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header text-dark bg-light">                        
+                            <h5><i class="fas fa-history"></i> Transaction history<span class="float-right"><button class="btn btn-dark">Operations</button></span></h5>                                                  
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text"></p>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                        </div>
                     </div>
                 </div>
+                <!--second card second row -->
+                <div class="col-md-5">                                        
+                    <div class="card animated pulse">
+                        <div class="card">
+                            <div class="card-header text-dark bg-light" >
+                                <span class="float-left">
+                                    <h5 class="card-title"><i class="fas fa-balance-scale"></i>  Total Balance</h5>
+                                </span>
+                            </div>
+                            <div class="card-body">
+                                BALANCE ASIGNADO                             
+                            </div>
+                        </div>                        
+                    </div> <br>               
+                    <div class="card animated pulse">
+                        <div class="card">
+                            <div class="card-header text-dark bg-light" >
+                                <span class="float-left">
+                                    <h5 class="card-title"><i class="fas fa-balance-scale"></i>  Available Balance</h5>
+                                </span>
+                            </div>
+                            <div class="card-body"> 
+                                MAXIMO BALANCE                              
+                            </div>
+                        </div>                        
+                    </div><br> 
+                    <div class="card animated pulse">
+                        <div class="card">
+                            <div class="card-header text-dark bg-light">                        
+                             <h5><i class="fas fa-balance-scale"></i> Set Limits<span class="float-right"><button class="btn btn-dark"> SET</button></span></h5><br>
+                             <h5><i class="fas fa-balance-scale"></i> Add Founds<span class="float-right"><button class="btn btn-dark">ADD</button></span></h5>                                                 
+                            </div>
+                        </div>                        
+                    </div><br>                                         
+                </div>                                
             </div>
-            <!--second card second row -->
-            <div class="col-md-5">                                        
-                <div class="card animated pulse">
-                    <div class="card">
-                        <div class="card-header text-dark bg-light" >
-                            <span class="float-left">
-                                <h5 class="card-title"><i class="fas fa-balance-scale"></i> Total Balance</h5>
-                            </span>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                ${{ new Intl.NumberFormat("de-DE").format(this.wallet.wallets[0].Wal_balance) }}
-                            </h5>
-                        </div>
-                    </div>                  
-                </div>
-                <br>               
-                <div class="card animated pulse">
-                    <div class="card">
-                        <div class="card-header text-dark bg-light" >
-                            <span class="float-left">
-                                <h5 class="card-title"><i class="fas fa-tools"/> Wallet Options</h5>
-                            </span>
-                        </div>
-                        <div class="card-body">
-                            <ul>
-                                <li>
-                                    <p class="card-text">                  
-                                        Manage associated wallets
-                                        <span class="float-right">
-                                            <router-link :to="{name: 'associatedWallets'}" class="btn btn-dark btn-sm">
-                                                <span v-on:click="associatedWallets('manage')">
-                                                    Manage
-                                                </span>
-                                            </router-link>
-                                        </span>
-                                    </p>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>
-                                    <p class="card-text">
-                                        Create associated wallets
-                                        <span class="float-right">
-                                            <router-link class="btn btn-dark btn-sm" :to="{name: 'signup'}">
-                                                <span v-on:click="signup(3, wallet.wallets[0].Ent_id, 'Create Associated Wallet')">
-                                                    Create
-                                                </span>
-                                            </router-link>
-                                        </span>
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>                        
-                </div>
-                <br>                                         
-            </div>                                
-        </div>
-        <br>
-    </div>       
+            <br>
+        </div>       
 </div>
 </template>
-    
-<script>
-import axios from 'axios'
-import NavBarWallet from '../components/NavBarWallet.vue'
-import clipboard from 'clipboard'
-new clipboard('#idwallet');
 
-export default {
-    name: 'walletEnterprise',
-    components: {
-        NavBarWallet
-    },
-    data() {
-        return {
-            name: localStorage.getItem('name'),
-            wallet: null,
-            response: null,
-            link: '/wallet-enterprise'
-        }
-    }, beforeCreate() {
-        const pathEnterpise = '/wallet/find/all/' + localStorage.getItem('username');
-        axios
-            .get(this.$store.state.backURL + pathEnterpise, {
-                headers: {
-                    'access-token': localStorage.getItem('token')
-                }
-            })
-            .then(response => {
-                if(response.status !== 200) {
-                    alert("Request error");
-                } else {
-                    this.wallet = response.data;
-                }
-            }).catch(error => {
-                if(error.status === 500) {
-                    alert("Server error");
-                } else {
-                    alert("Backent conection impossible");
-                }
-            });
-    },
-    methods: {
-        associatedWallets(item) {
-            localStorage.removeItem('typePageAW')
-            localStorage.setItem('typePageAW', item);
-        },
-        signup(item1, item2, item3) {
-            localStorage.removeItem('wallettypeSignup');
-            localStorage.removeItem('enterprise_idSignup');
-            localStorage.removeItem('nameSignup');
-            localStorage.setItem('wallettypeSignup', item1);
-            localStorage.setItem('enterprise_idSignup', item2);
-            localStorage.setItem('nameSignup', item3);
-        }
-    }
-}
+<script>
+
 </script>
+
+<style>
+
+</style>
