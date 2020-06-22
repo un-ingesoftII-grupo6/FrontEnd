@@ -23,7 +23,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="form-group">
-                                    <input id="button1" type="submit" value="Submit" class="btn btn-success">
+                                    <input id="button1" type="button" value="Cancel" onclick="history.back()" class="btn btn-danger">
+                                    <input id="button1" type="submit" value="Submit" class="btn btn-success float-right">
                                 </div>
                             </div>
                         </form>
@@ -69,6 +70,7 @@ export default {
                 if(response.status !== 200) {
                     alert("Authentication error");
                 } else {
+                    localStorage.clear()
                     localStorage.setItem('username', this.username);
                     localStorage.setItem('token', response.data.token);
                     

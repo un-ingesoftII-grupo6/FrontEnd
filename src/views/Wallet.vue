@@ -11,10 +11,12 @@
                 <div class="card animated pulse">
                     <div class="card">
                         <div class="card-header text-dark bg-light" id="walletID" data-clipboard-action="copy" data-clipboard-target="#walletID">
-                            {{this.wallet.wallets[0].Wal_id}}
-                            <span class="float-right">
-                                <button id="button" type="#" class="btn btn-dark btn-sm" data-clipboard-action="copy" data-clipboard-target="#walletID">Copy</button>
-                            </span>
+                            <h6>
+                                {{ this.wallet.wallets[0].Wal_id }}
+                                <span class="float-right">
+                                    <button id="button" type="#" class="btn btn-dark btn-sm" data-clipboard-action="copy" data-clipboard-target="#walletID">Copy</button>
+                                </span>
+                            </h6>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-balance-scale"></i> Balance</h5>
@@ -30,7 +32,11 @@
                         <h5 class="card-title">Easy and Fast</h5>
                         <p class="card-text">Seen money card example here we can put 
                             the max monay that can send a wallet_user attention for type wallet</p>
-                        <router-link to="/make-transfer" class="btn btn-dark">Send</router-link>
+                        <router-link :to="{name: 'makeTransfer'}" class="btn btn-dark">
+                            <span v-on:click="maketransfer('Make Transfer')">
+                                Send
+                            </span>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -39,7 +45,12 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-dark bg-light">                        
-                        <h5><i class="fas fa-history"></i> Transaction History<span class="float-right"><router-link to="/operations" class="btn btn-dark">Operations</router-link></span></h5>                                                  
+                        <h5>
+                            <i class="fas fa-history"/> Transaction History
+                            <span class="float-right">
+                                <router-link to="/operations" class="btn btn-dark">Operations</router-link>
+                            </span>
+                        </h5>                                                  
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"></h5>
@@ -138,6 +149,13 @@ export default {
                     alert("Backent conection impossible");
                 }
             });
+    },
+    methods: {
+        maketransfer(item) {
+            localStorage.removeItem('namePageMakeTransfer');
+            localStorage.removeItem('destWalletMakeTransfer');
+            localStorage.setItem('namePageMakeTransfer', item);
+        }
     }
 }
 </script>

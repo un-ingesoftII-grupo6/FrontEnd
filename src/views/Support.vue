@@ -1,6 +1,6 @@
 <template>
 <div>
-    <nav-bar/>
+    <nav-bar linkProp="/"/>
     <br>
 
     <div class="container p-3">
@@ -48,12 +48,17 @@
                 </div>                                                                
                 <div class="form-group">
                     <div>                                
-                        <input id="button1" type="submit" value="Send" class="btn btn-success">
+                        <input id="button1" type="button" value="Cancel" onclick="history.back()" class="btn btn-danger">
+                        <input id="button1" type="submit" value="Submit" class="btn btn-success float-right">
                     </div>
                 </div>                        
             </form>
 		</div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
 </div>
 </template>
 

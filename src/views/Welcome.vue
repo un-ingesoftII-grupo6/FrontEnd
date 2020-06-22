@@ -8,7 +8,11 @@
                     <i class="fas fa-wallet"/> UN Wallet</router-link>
                 <span class="float-right">
                     <router-link to="/login" class="btn btn-dark">Log in</router-link>
-                    <router-link id="button" class="btn btn-dark" :to="{name: 'signup', params: {wallettype: this.wallettype}}">Sign up</router-link>
+                    <router-link id="button" class="btn btn-dark" :to="{name: 'signup'}">
+                        <span v-on:click="signup(1, 'Sign up')">
+                            Sign up
+                        </span>
+                    </router-link>
                 </span>
             </h2>
         </div>
@@ -53,11 +57,14 @@
 <script>
 export default {
     name: 'welcome',
-    data() {
-        return {
-            wallettype: 1
+    methods: {
+        signup(item1, item2) {
+            localStorage.removeItem('wallettypeSignup');
+            localStorage.removeItem('nameSignup');
+            localStorage.setItem('wallettypeSignup', item1);
+            localStorage.setItem('nameSignup', item2);
         }
-    },
+    }
 }
 </script>
 

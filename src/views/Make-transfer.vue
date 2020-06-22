@@ -8,13 +8,18 @@
             <div class="col -md-3">
                 <div class="card animated flipInY">
                     <div class="card-header bg-light text-dark">
-                        <h3>Make transfer</h3>
+                        <h3>{{ this.namePage }}</h3>
                     </div>
                     <div class="card-body">
                         <form id="miForm" @submit="transfer">
                             <div class="form-group">
                                 <label for="destWallet">Destination Wallet</label>
-                                <input name="destWallet" id="destWallet" type="text" class="form-control" placeholder="Destination Wallet" v-model="destWallet" required/>
+                                <div v-if="this.destWallet === ''">
+                                    <input name="destWallet" id="destWallet" type="text" class="form-control" placeholder="Destination Wallet" v-model="destWallet" required/>
+                                </div>
+                                <div v-else>
+                                    <input name="destWallet" id="destWallet" type="text" class="form-control" :placeholder="this.destWallet" disabled/>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="amount">Amount</label>
@@ -25,10 +30,9 @@
                                 <input type="password" class="form-control" id="password" placeholder="Password" name="password" v-model="password" required/>
                             </div>
                             <div class="form-group">
-                                <br>
                                 <div>
-                                    <input type="button" value="Go Back" onclick="history.back()" class="btn btn-danger">
-                                    <input  id="button" type="submit" value="Submit" class="btn btn-success">
+                                    <input id="button1" type="button" value="Go Back" onclick="history.back()" class="btn btn-danger">
+                                    <input id="button1" type="submit" value="Submit" class="btn btn-success float-right">
                                 </div>
                             </div>
                         </form>
@@ -53,13 +57,18 @@ export default {
         return {
             name: localStorage.getItem('name'),
             wallet: null,
-            destWallet: '',
+            destWallet: null,
             wal_id_sender: '',
             amount: null,
             password: '',                
             response: null,
-            link: '/wallet'
+            link: '/wallet',
+            namePage: null,
         }
+    },
+    mounted() {
+        this.namePage = localStorage.getItem('namePageMakeTransfer');
+        this.destWallet = (localStorage.getItem('destWalletMakeTransfer') === null) ? '' : localStorage.getItem('destWalletMakeTransfer');
     },
     beforeCreate() {
         const pathWallet = '/wallet/find/all/' + localStorage.getItem('username');

@@ -20,7 +20,7 @@
                         <form @submit="update">
                             <div class="form-group">
                                 <label for="account">Account</label>
-                                <input name="account" id="account" type="text" class="form-control" :placeholder="this.user.Wal_id" disabled required/>
+                                <input name="account" id="account" type="text" class="form-control" :placeholder="this.account" disabled required/>
                             </div>
                             <div class="form-group">
                                 <label for="state">State</label>
@@ -76,7 +76,7 @@ export default {
         return {
             name: localStorage.getItem('name'),
             link: '/wallet-enterprise',
-            user: null,
+            account: null,
             state: null,
             movementLimit: null,
             monthLimith: null,
@@ -84,20 +84,14 @@ export default {
             response: null
         }
     },
-    props: {
-        userProp: {
-            type: Object,
-            required: true
-        },
-    },
     mounted() {
-        this.user = this.userProp
+        this.account = localStorage.getItem('accountSetLimits');
     },
     methods: {
         update(event) {
-            const path = '/wallet/edit/' + this.user.possess.Usr_username + '/' + this.user.Wal_id
+            const path = '/wallet/edit/' + this.user.possess.Usr_username + '/' + this.account
             
-            axios.put(this.$store.state.backURL + path, 
+            axios.put(this.$store.state.backURL + path,
                 {
                     state: this.state,
                     new_movement_limit: this.movementLimit,

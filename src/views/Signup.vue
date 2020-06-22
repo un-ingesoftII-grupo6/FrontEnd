@@ -66,7 +66,8 @@
                             </div>
                             <div class="form-group">
                                 <div>
-                                    <input id="button1" type="submit" value="Submit" class="btn btn-success">
+                                    <input id="button1" type="button" value="Cancel" onclick="history.back()" class="btn btn-danger">
+                                    <input id="button1" type="submit" value="Submit" class="btn btn-success float-right">
                                 </div>
                             </div>
                         </form>
@@ -106,25 +107,10 @@ export default {
             nameBar: localStorage.getItem('name')
         }
     },
-    props: {
-        wallettype: {
-            type: Number,
-            required: true,
-        },
-        enterprise_id: {
-            type: Number,
-            required: false
-        },
-        pname: {
-            type: String,
-            required: false,
-            default: 'Sign up'
-        }
-    },
     mounted() {
-        this.wtyp_id = this.wallettype;
-        this.ent_id = this.enterprise_id;
-        this.pageName = this.pname;
+        this.wtyp_id = parseInt(localStorage.getItem('wallettypeSignup'));
+        this.ent_id = localStorage.getItem('enterprise_idSignup');
+        this.pageName = localStorage.getItem('nameSignup');
     },
     methods: {
         signUp(event) {
@@ -160,7 +146,7 @@ export default {
                 event.preventDefault( );
                 return true;
             }
-        }
+        },
     }
     </script>
     

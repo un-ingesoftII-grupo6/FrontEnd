@@ -26,14 +26,27 @@
                                         <div class="card border-info">
                                             <div class="card-body">
                                                 <label for="username"><b>Account:</b> {{ item.Wal_id }}</label>
-                                                <span class="float-right">
-                                                    <router-link class="btn btn-dark" :to="{name: 'setLimits', params: {userProp: item}}">
-                                                        Set state
-                                                    </router-link>
-                                                    <router-link id="button" to="/make-transfer" class="btn btn-dark">
-                                                        Add founds
-                                                    </router-link>
-                                                </span>                             
+                                                <div v-if="typePage === 'manage'">
+                                                    <span class="float-right">
+                                                        <router-link class="btn btn-dark" :to="{name: 'setLimits'}">
+                                                            <span v-on:click="setlimits(item.Wal_id)">
+                                                                Set State
+                                                            </span>
+                                                        </router-link>
+                                                        <router-link id="button" :to="{name: 'makeTransfer'}" class="btn btn-dark">
+                                                            <span v-on:click="addfounds('Add Founds', item.Wal_id)">
+                                                                Add Founds
+                                                            </span>
+                                                        </router-link>
+                                                    </span> 
+                                                </div>
+                                                <div v-else-if="typePage === 'history'">
+                                                    <span class="float-right">
+                                                        <router-link class="btn btn-dark" :to="{name: 'operations'}">
+                                                            History
+                                                        </router-link>
+                                                    </span>
+                                                </div>                           
                                             </div>                               
                                         </div> 
                                         <br>
@@ -71,8 +84,12 @@ export default {
             name: localStorage.getItem('name'),
             link: '/wallet-enterprise',
             accounts: null,
-            response: null
+            response: null,
+            typePage: null
         }
+    },
+    mounted() {
+        this.typePage = localStorage.getItem('typePageAW');
     },
     beforeCreate() {
         const path = '/enterprise/find/managed/' + localStorage.getItem('username');
@@ -95,7 +112,19 @@ export default {
                     alert(error.response.data);
                 }
             });
-    }
+    },
+    methods: {
+        setlimits(item) {
+            localStorage.removeItem('accountSetLimits');
+            localStorage.setItem('accountSetLimits', item);
+        },
+        addfounds(item1, item2) {
+            localStorage.removeItem('namePageMakeTransfer');
+            localStorage.removeItem('destWalletMakeTransfer');
+            localStorage.setItem('namePageMakeTransfer', item1);
+            localStorage.setItem('destWalletMakeTransfer', item2);
+        }
+    } 
 }
 </script>
 

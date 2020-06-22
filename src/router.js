@@ -25,7 +25,6 @@ const router = new Router({
             path: "/signup",
             name: "signup",
             component: Signup,
-            props: true,
             meta: {
                 access: true
             }
@@ -81,7 +80,6 @@ const router = new Router({
             path: '/set-limits',
             name: 'setLimits',
             component: SetLimits,
-            props: true,
             meta: {
                 auth: true
             }

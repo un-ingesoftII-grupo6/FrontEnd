@@ -37,14 +37,14 @@ export default {
     },
     methods: {
         logOut() {
-            localStorage.removeItem('username');
-            localStorage.removeItem('token');
-            localStorage.removeItem('name');
+            localStorage.clear();
         }
     }
 }
 </script>
 
 <style>
-a {  text-decoration: none;}
+a { 
+    text-decoration: none;
+}
 </style>
