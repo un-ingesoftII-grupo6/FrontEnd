@@ -88,6 +88,7 @@ const router = new Router({
             path: '/associated-wallets',
             name: 'associatedWallets',
             component: AssociatedWallets,
+            props: true,
             meta: {
                 auth: true
             }

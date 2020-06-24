@@ -52,7 +52,7 @@
                                 <p class="card-text">
                                     Show history of my associated wallets
                                     <span class="float-right">
-                                        <router-link class="btn btn-dark btn-sm" :to="{name: 'associatedWallets'}">
+                                        <router-link class="btn btn-dark btn-sm" :to="{name: 'associatedWallets', params: {typePageProp: 'history'}}">
                                             <span v-on:click="associatedWallets('history')">
                                                 Show
                                             </span>
@@ -94,7 +94,7 @@
                                     <p class="card-text">                  
                                         Manage associated wallets
                                         <span class="float-right">
-                                            <router-link :to="{name: 'associatedWallets'}" class="btn btn-dark btn-sm">
+                                            <router-link :to="{name: 'associatedWallets', params: {typePageProp: 'manage'}}" class="btn btn-dark btn-sm">
                                                 <span v-on:click="associatedWallets('manage')">
                                                     Manage
                                                 </span>

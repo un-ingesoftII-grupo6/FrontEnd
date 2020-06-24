@@ -90,8 +90,18 @@ export default {
             link: '/wallet-enterprise',
             accounts: null,
             response: null,
-            typePage: localStorage.getItem('typePageAW')
+            typePage: null
         }
+    },
+    props: {
+        typePageProp: {
+            type: String,
+            required: true,
+            default: localStorage.getItem('typePageAW')
+        }
+    },
+    mounted() {
+        this.typePage = this.typePageProp;
     },
     beforeCreate() {
         const path = '/enterprise/find/managed/' + localStorage.getItem('username');
