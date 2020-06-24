@@ -6,7 +6,8 @@
                     v-bind:to="this.link" class="text-dark">
                     <em class="fas fa-wallet"/> UN Wallet</router-link>
                 <span class="float-right">
-                    <a v-on:click="logOut" href="/" class="btn btn-dark"><em class="fas fa-sign-out-alt"/> Log out</a>
+                    <a v-on:click="settings(link)" href="/settings" class="btn btn-dark"><em class="fas fa-cogs"/></a>
+                    <a v-on:click="logOut" href="/" class="btn btn-dark" style="margin-left: .8em;"><em class="fas fa-sign-out-alt"/> Log out</a>
                 </span>
             </h3>
         </div>
@@ -34,6 +35,10 @@ export default {
     methods: {
         logOut() {
             localStorage.clear();
+        },
+        settings(item) {
+            localStorage.removeItem('settings');
+            localStorage.setItem('settings', item)
         }
     }
 }

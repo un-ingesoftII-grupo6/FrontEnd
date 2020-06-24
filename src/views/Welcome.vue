@@ -8,11 +8,7 @@
                     <em class="fas fa-wallet"/> UN Wallet</router-link>
                 <span class="float-right">
                     <router-link to="/login" class="btn btn-dark">Log in</router-link>
-                    <router-link id="button" class="btn btn-dark" :to="{name: 'signup'}">
-                        <span v-on:click="signup(1, 'Sign up')">
-                            Sign up
-                        </span>
-                    </router-link>
+                    <a v-on:click="signup(1, 'Sign up')" href="/signup" class="btn btn-dark" style="margin-left: .8em;">Sign up</a>
                 </span>
             </h2>
         </div>

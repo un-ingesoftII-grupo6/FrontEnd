@@ -38,9 +38,7 @@
                                 <p class="card-text">                  
                                     Show my history
                                     <span class="float-right">
-                                        <router-link :to="{name: 'operations'}" class="btn btn-dark btn-sm">
-                                            Show
-                                        </router-link>
+                                        <a v-on:click="operationsEnterpriseWallet('/wallet-enterprise')" href="/operations" class="btn btn-dark btn-sm">Show</a>
                                     </span>
                                 </p>
                             </li>
@@ -50,11 +48,7 @@
                                 <p class="card-text">
                                     Show history of my associated wallets
                                     <span class="float-right">
-                                        <router-link class="btn btn-dark btn-sm" :to="{name: 'associatedWallets'}">
-                                            <span v-on:click="associatedWallets('history')">
-                                                Show
-                                            </span>
-                                        </router-link>
+                                        <a v-on:click="associatedWallets('history')" href="/associated-wallets" class="btn btn-dark btn-sm">Show</a>
                                     </span>
                                 </p>
                             </li>
@@ -92,11 +86,7 @@
                                     <p class="card-text">                  
                                         Manage associated wallets
                                         <span class="float-right">
-                                            <router-link :to="{name: 'associatedWallets'}" class="btn btn-dark btn-sm">
-                                                <span v-on:click="associatedWallets('manage')">
-                                                    Manage
-                                                </span>
-                                            </router-link>
+                                            <a v-on:click="associatedWallets('manage')" href="/associated-wallets" class="btn btn-dark btn-sm">Manage</a>
                                         </span>
                                     </p>
                                 </li>
@@ -106,11 +96,7 @@
                                     <p class="card-text">
                                         Create associated wallets
                                         <span class="float-right">
-                                            <router-link class="btn btn-dark btn-sm" :to="{name: 'signup'}">
-                                                <span v-on:click="signup(3, wallet.wallets[0].Ent_id, 'Create Associated Wallet')">
-                                                    Create
-                                                </span>
-                                            </router-link>
+                                            <a v-on:click="signup(3, wallet.wallets[0].Ent_id, 'Create Associated Wallet')" href="/signup" class="btn btn-dark btn-sm">Create</a>
                                         </span>
                                     </p>
                                 </li>
@@ -118,6 +104,15 @@
                         </div>
                     </div>                        
                 </div>
+                <br>
+                <div class="card">
+                    <h5 class="card-header text-dark bg-light "><em class="fas fa-dollar-sign"></em> Make Transfer
+                        <span class="float-right">
+                            <a v-on:click="maketransferEnterprise('Make Transfer', '/wallet-enterprise')" href="/make-transfer" class="btn btn-dark btn-sm">Send</a>
+                        </span>
+                    </h5>
+                        
+                </div>                                      
                 <br>                                         
             </div>                                
         </div>
@@ -178,6 +173,18 @@ export default {
             localStorage.setItem('wallettypeSignup', item1);
             localStorage.setItem('enterprise_idSignup', item2);
             localStorage.setItem('nameSignup', item3);
+        },
+        operationsEnterpriseWallet(item) {
+            localStorage.removeItem('usernameOperations');
+            localStorage.removeItem('linkOperations');
+            localStorage.setItem('linkOperations', item);
+        },
+        maketransferEnterprise(item1, item2) {
+            localStorage.removeItem('namePageMakeTransfer');
+            localStorage.removeItem('destWalletMakeTransfer');
+            localStorage.removeItem('linkMakeTransfer');
+            localStorage.setItem('namePageMakeTransfer', item1);
+            localStorage.setItem('linkMakeTransfer', item2);
         }
     }
 }

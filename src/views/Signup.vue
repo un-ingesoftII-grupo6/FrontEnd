@@ -51,14 +51,25 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="inputPassword">Password</label>
-                                        <input name="password" id="inputPassword" type="password" class="form-control"
+                                        <span class="float-right">
+                                            <div class="container">
+                                                <em v-on:click.prevent="pass(1)" :class="image1" style="cursor: pointer;"/>
+                                            </div>
+                                        </span>
+                                        <input name="password" id="inputPassword" :type="passwordFieldType1" class="form-control"
                                             placeholder="Password" v-model="password" required/>
+                                        <button v-on:click.prevent="generatePassword" class="btn btn-info btn-sm" style="margin-top: .6em;"><em class="fas fa-key"/> Generate</button>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="confirmPassword">Confirm Password</label>
-                                        <input name="confirmPassword" id="confirmPassword" type="password" class="form-control"
+                                        <span class="float-right">
+                                            <div class="container">
+                                                <em v-on:click.prevent="pass(2)" :class="image2" style="cursor: pointer;"/>
+                                            </div>
+                                        </span>
+                                        <input name="confirmPassword" id="confirmPassword" :type="passwordFieldType2" class="form-control"
                                             placeholder="Confirm Pasword" v-model="cPassword" required/>
                                     </div>
                                 </div>
@@ -86,6 +97,7 @@
 import axios from 'axios'
 import NavBar from '../components/NavBar.vue'
 import NavBarWallet from '../components/NavBarWallet.vue'
+var generator = require('generate-password')
 
 const path = '/user/signup';
 
@@ -104,50 +116,83 @@ export default {
             password: '',
             cPassword: '',
             response: null,
-            wtyp_id: null,
-            ent_id: null,
-            pageName: null,
+            wtyp_id: parseInt(localStorage.getItem('wallettypeSignup')),
+            ent_id: localStorage.getItem('enterprise_idSignup'),
+            pageName: localStorage.getItem('nameSignup'),
+            passwordFieldType1: 'password',
+            passwordFieldType2: 'password',
+            image1: 'fas fa-eye-slash',
+            image2: 'fas fa-eye-slash'
         }
-    },
-    mounted() {
-        this.wtyp_id = parseInt(localStorage.getItem('wallettypeSignup'));
-        this.ent_id = localStorage.getItem('enterprise_idSignup');
-        this.pageName = localStorage.getItem('nameSignup');
     },
     methods: {
         signUp(event) {
             if(this.password !== this.cPassword){
-                    event.preventDefault( );
-                    return;
-                }
-                axios
-                    .post(this.$store.state.backURL + path,
-                        {
-                            name: this.name.trim(),
-                            surname: this.surname.trim(),
-                            email: this.email.trim(),
-                            username: this.username.trim(),
-                            password: this.password,
-                            cpassword: this.cPassword,
-                            wtyp_id: this.wtyp_id,
-                            ent_id: this.ent_id
-                        }
-                    ).then(response => {
-                        if(response.status !== 201) {
-                            alert("User storage error");
-                        } else {
-                            if(this.wtyp_id === 1) {
-                                alert("Correctly registered user");
-                            } else if(this.wtyp_id === 3) {
-                                alert("Correctly registered and associated user");
-                            } 
-                        }
-                    }).catch( error =>{
-                        alert(error.response.data);
-                    });
+                alert('The passwords are not the same');
                 event.preventDefault( );
-                return true;
+                return;
             }
+            axios
+                .post(this.$store.state.backURL + path,
+                    {
+                        name: this.name.trim(),
+                        surname: this.surname.trim(),
+                        email: this.email.trim(),
+                        username: this.username.trim(),
+                        password: this.password,
+                        cpassword: this.cPassword,
+                        wtyp_id: this.wtyp_id,
+                        ent_id: this.ent_id
+                    }
+                ).then(response => {
+                    if(response.status !== 201) {
+                        alert("User storage error");
+                    } else {
+                        if(this.wtyp_id === 1) {
+                            alert("Correctly registered user");
+                        } else if(this.wtyp_id === 3) {
+                            alert("Correctly registered and associated user");
+                        } 
+                    }
+                }).catch( error =>{
+                    alert(error.response.data);
+                });
+            event.preventDefault( );
+            return true;
         },
-    }
+        pass(item) {
+            switch(item) {
+                case 1:
+                    if(this.passwordFieldType1 === 'password') {
+                        this.passwordFieldType1 = 'text';
+                        this.image1 = 'fas fa-eye';
+                    } else {
+                        this.passwordFieldType1 = 'password';
+                        this.image1 = 'fas fa-eye-slash';
+                    }
+                    break;
+
+                case 2:
+                    if(this.passwordFieldType2 === 'password') {
+                        this.passwordFieldType2 = 'text';
+                        this.image2 = 'fas fa-eye';
+                    } else {
+                        this.passwordFieldType2 = 'password';
+                        this.image2 = 'fas fa-eye-slash';
+                    }
+                    break;
+            }
+            
+        },
+        generatePassword() {
+            this.password = generator.generate({
+                length: 20,
+                numbers: true,
+                strict: true
+            })
+
+            this.cPassword = this.password;
+        }
+    },
+}
 </script>

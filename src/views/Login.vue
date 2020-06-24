@@ -2,6 +2,7 @@
 <div>
     <nav-bar linkProp="/"/>
     <br>
+    <br>
     
     <div class="container p-4">
         <div class="row">

@@ -16,14 +16,6 @@
 <script>
 export default {
     name: 'App',
-    methods: {
-        dataStorage(key, item) {
-            localStorage.setItem(key, item);
-        },
-        deleteDataStorage(key) {
-            localStorage.removeItem(key);
-        }
-    }
 }
 </script>
 

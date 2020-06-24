@@ -30,25 +30,13 @@
                                                     </label>
                                                 <span v-if="typePage === 'manage'">
                                                     <span class="float-right">
-                                                        <router-link class="btn btn-dark" :to="{name: 'setLimits'}">
-                                                            <span v-on:click="setlimits(item.Wal_id)">
-                                                                Set State
-                                                            </span>
-                                                        </router-link>
-                                                        <router-link id="button" :to="{name: 'makeTransfer'}" class="btn btn-dark">
-                                                            <span v-on:click="addfounds('Add Founds', item.Wal_id)">
-                                                                Add Founds
-                                                            </span>
-                                                        </router-link>
+                                                        <a v-on:click="setlimits(item.Wal_id)" href="/set-limits" class="btn btn-dark">Set State</a>
+                                                        <a v-on:click="addfunds('Add Funds', item.Wal_id, '/wallet-enterprise')" href="/make-transfer" class="btn btn-dark" style="margin-left: .8em;">Add Funds</a>
                                                     </span> 
                                                 </span>
                                                 <span v-else-if="typePage === 'history'">
                                                     <span class="float-right">
-                                                        <router-link class="btn btn-dark" :to="{name: 'operations'}">
-                                                            <span v-on:click="operationsWalletAssociated(item.possess.Usr_username)">
-                                                                History
-                                                            </span>
-                                                        </router-link>
+                                                        <a v-on:click="operationsWalletAssociated(item.possess.Usr_username, '/wallet-enterprise')" href="/operations" class="btn btn-dark">History</a>
                                                     </span>
                                                 </span>                           
                                             </div>                               
@@ -90,11 +78,8 @@ export default {
             link: '/wallet-enterprise',
             accounts: null,
             response: null,
-            typePage: null
+            typePage: localStorage.getItem('typePageAW')
         }
-    },
-    mounted() {
-        this.typePage = localStorage.getItem('typePageAW');
     },
     beforeCreate() {
         const path = '/enterprise/find/managed/' + localStorage.getItem('username');
@@ -123,15 +108,19 @@ export default {
             localStorage.removeItem('accountSetLimits');
             localStorage.setItem('accountSetLimits', item);
         },
-        addfounds(item1, item2) {
+        addfunds(item1, item2, item3) {
             localStorage.removeItem('namePageMakeTransfer');
             localStorage.removeItem('destWalletMakeTransfer');
+            localStorage.removeItem('linkMakeTransfer');
             localStorage.setItem('namePageMakeTransfer', item1);
             localStorage.setItem('destWalletMakeTransfer', item2);
+            localStorage.setItem('linkMakeTransfer', item3);
         },
-        operationsWalletAssociated(item) {
+        operationsWalletAssociated(item1, item2) {
             localStorage.removeItem('usernameOperations');
-            localStorage.setItem('usernameOperations', item);
+            localStorage.removeItem('linkOperations');
+            localStorage.setItem('usernameOperations', item1);
+            localStorage.setItem('linkOperations', item2);
         }
     } 
 }
