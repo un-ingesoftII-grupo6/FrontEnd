@@ -104,7 +104,15 @@
                         </div>
                     </div>                        
                 </div>
-                <br>                                         
+                <br>
+                <div class="card">
+                    <h5 class="card-header text-dark bg-light "><em class="fas fa-dollar-sign"></em> Make Transfer
+                        <span class="float-right">
+                            <a v-on:click="maketransferEnterprise('Make Transfer', '/wallet-enterprise')" href="/make-transfer" class="btn btn-dark btn-sm">Send</a>
+                        </span>
+                    </h5>
+                        
+                </div>                                      
             </div>                                
         </div>
         <br>
@@ -169,6 +177,13 @@ export default {
             localStorage.removeItem('usernameOperations');
             localStorage.removeItem('linkOperations');
             localStorage.setItem('linkOperations', item);
+        },
+        maketransferEnterprise(item1, item2) {
+            localStorage.removeItem('namePageMakeTransfer');
+            localStorage.removeItem('destWalletMakeTransfer');
+            localStorage.removeItem('linkMakeTransfer');
+            localStorage.setItem('namePageMakeTransfer', item1);
+            localStorage.setItem('linkMakeTransfer', item2);
         }
     }
 }

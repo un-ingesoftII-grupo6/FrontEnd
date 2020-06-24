@@ -26,14 +26,14 @@
                             <div class="form-group">
                                 <label for="newPassword">New Password</label>
                                 <span class="float-right">
-                                    <em v-on:click.prevent="pass1" :class="image1" style="cursor: pointer;"/>
+                                    <em v-on:click.prevent="pass(1)" :class="image1" style="cursor: pointer;"/>
                                 </span>
                                 <input name="newPasswordt" id="newPassword" :type="passwordFieldType1" class="form-control" placeholder="New Password" v-model="newPassword" required/>
                             </div>
                             <div class="form-group">
                                 <label for="cNewPassword">Confirm New Password</label>
                                 <span class="float-right">
-                                    <em v-on:click.prevent="pass2" :class="image2" style="cursor: pointer;"/>
+                                    <em v-on:click.prevent="pass(2)" :class="image2" style="cursor: pointer;"/>
                                 </span>
                                 <input name="cNewPassword" id="cNewPassword" :type="passwordFieldType2" class="form-control" placeholder="Confirm New Password" v-model="cNewPassword" required/>
                                 <button v-on:click.prevent="generatePassword" class="btn btn-info btn-sm" style="margin-top: .8em;"><em class="fas fa-key"/> Generate</button>
@@ -117,23 +117,29 @@ export default {
             event.preventDefault( );
             return true;
         },
-        pass1() {
-            if(this.passwordFieldType1 === 'password') {
-                this.passwordFieldType1 = 'text';
-                this.image1 = 'fas fa-eye';
-            } else {
-                this.passwordFieldType1 = 'password';
-                this.image1 = 'fas fa-eye-slash';
+        pass(item) {
+            switch(item) {
+                case 1:
+                    if(this.passwordFieldType1 === 'password') {
+                        this.passwordFieldType1 = 'text';
+                        this.image1 = 'fas fa-eye';
+                    } else {
+                        this.passwordFieldType1 = 'password';
+                        this.image1 = 'fas fa-eye-slash';
+                    }
+                    break;
+
+                case 2:
+                    if(this.passwordFieldType2 === 'password') {
+                        this.passwordFieldType2 = 'text';
+                        this.image2 = 'fas fa-eye';
+                    } else {
+                        this.passwordFieldType2 = 'password';
+                        this.image2 = 'fas fa-eye-slash';
+                    }
+                    break;
             }
-        },
-        pass2() {
-            if(this.passwordFieldType2 === 'password') {
-                this.passwordFieldType2 = 'text';
-                this.image2 = 'fas fa-eye';
-            } else {
-                this.passwordFieldType2 = 'password';
-                this.image2 = 'fas fa-eye-slash';
-            }
+            
         },
         generatePassword() {
             this.newPassword = generator.generate({

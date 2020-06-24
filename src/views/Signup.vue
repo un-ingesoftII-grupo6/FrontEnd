@@ -53,7 +53,7 @@
                                         <label for="inputPassword">Password</label>
                                         <span class="float-right">
                                             <div class="container">
-                                                <em v-on:click.prevent="pass1" :class="image1" style="cursor: pointer;"/>
+                                                <em v-on:click.prevent="pass(1)" :class="image1" style="cursor: pointer;"/>
                                             </div>
                                         </span>
                                         <input name="password" id="inputPassword" :type="passwordFieldType1" class="form-control"
@@ -66,7 +66,7 @@
                                         <label for="confirmPassword">Confirm Password</label>
                                         <span class="float-right">
                                             <div class="container">
-                                                <em v-on:click.prevent="pass2" :class="image2" style="cursor: pointer;"/>
+                                                <em v-on:click.prevent="pass(2)" :class="image2" style="cursor: pointer;"/>
                                             </div>
                                         </span>
                                         <input name="confirmPassword" id="confirmPassword" :type="passwordFieldType2" class="form-control"
@@ -160,23 +160,29 @@ export default {
             event.preventDefault( );
             return true;
         },
-        pass1() {
-            if(this.passwordFieldType1 === 'password') {
-                this.passwordFieldType1 = 'text';
-                this.image1 = 'fas fa-eye';
-            } else {
-                this.passwordFieldType1 = 'password';
-                this.image1 = 'fas fa-eye-slash';
+        pass(item) {
+            switch(item) {
+                case 1:
+                    if(this.passwordFieldType1 === 'password') {
+                        this.passwordFieldType1 = 'text';
+                        this.image1 = 'fas fa-eye';
+                    } else {
+                        this.passwordFieldType1 = 'password';
+                        this.image1 = 'fas fa-eye-slash';
+                    }
+                    break;
+
+                case 2:
+                    if(this.passwordFieldType2 === 'password') {
+                        this.passwordFieldType2 = 'text';
+                        this.image2 = 'fas fa-eye';
+                    } else {
+                        this.passwordFieldType2 = 'password';
+                        this.image2 = 'fas fa-eye-slash';
+                    }
+                    break;
             }
-        },
-        pass2() {
-            if(this.passwordFieldType2 === 'password') {
-                this.passwordFieldType2 = 'text';
-                this.image2 = 'fas fa-eye';
-            } else {
-                this.passwordFieldType2 = 'password';
-                this.image2 = 'fas fa-eye-slash';
-            }
+            
         },
         generatePassword() {
             this.password = generator.generate({

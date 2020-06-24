@@ -32,11 +32,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="movement-limit">New Movement Limit</label>
-                                <input name="movement-limit" id="movement-limit" type="number" class="form-control" placeholder="New Movement Limit" v-model="movementLimit" required/>
+                                <input name="movement-limit" id="movement-limit" type="number" class="form-control" placeholder="New Movement Limit" v-model="movementLimit"/>
                             </div>
                             <div class="form-group">
                                 <label for="month-limit">New Month Limit</label>
-                                <input name="month-limit" id="month-limit" type="number" class="form-control" placeholder="New Month Limit" v-model="monthLimith" required/>
+                                <input name="month-limit" id="month-limit" type="number" class="form-control" placeholder="New Month Limit" v-model="monthLimith"/>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
