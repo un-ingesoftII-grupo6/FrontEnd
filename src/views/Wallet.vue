@@ -62,8 +62,8 @@
                             and also in the form of a graph for more control and security.
                         </p>
                         <span class="float-left">
-                                <a v-on:click="operationsWallet('/wallet')" href="/operations" class="btn btn-dark">Operations</a>
-                            </span>
+                            <a v-on:click="operationsWallet('/wallet')" href="/operations" class="btn btn-dark">Operations</a>
+                        </span>
                     </div>
                 </div>
             </div>

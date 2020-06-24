@@ -68,7 +68,6 @@ export default {
             response: null,
             chartdata: null,
             options: null,
-
             link: localStorage.getItem('linkOperations')
         }
     },
