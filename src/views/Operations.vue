@@ -19,7 +19,7 @@
                                 <ul id="modifies-recipient">
                                     <h5>Received</h5>
                                     <li v-for="(item, i) in movement.wallets[0].modifies_recipient" :key="i">
-                                        <strong>Date:</strong> {{ item.Mov_timestamp }}, <strong>Sender:</strong> {{item.Wal_id_sender}}, <strong>Amount:</strong> ${{ item.Mov_total_amount}}
+                                        <strong>Date:</strong> {{ item.Mov_timestamp }}, <strong>Sender:</strong> {{item.Wal_id_sender}}, <strong>Amount:</strong> ${{ new Intl.NumberFormat("de-DE").format(item.Mov_total_amount) }}
                                     </li>
                                 </ul>
                             </div>
@@ -68,7 +68,7 @@ export default {
             response: null,
             chartdata: null,
             options: null,
-            link: '/wallet'
+            link: localStorage.getItem('linkOperations')
         }
     },
     beforeCreate() {

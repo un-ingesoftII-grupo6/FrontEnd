@@ -31,7 +31,7 @@
                             wallet number and your password, of course, for more security!
                         </p>
                         <router-link :to="{name: 'makeTransfer'}" class="btn btn-dark">
-                            <span v-on:click="maketransfer('Make Transfer')">
+                            <span v-on:click="maketransfer('Make Transfer', '/wallet')">
                                 Send
                             </span>
                         </router-link>
@@ -122,10 +122,12 @@ export default {
             });
     },
     methods: {
-        maketransfer(item) {
+        maketransfer(item1, item2) {
             localStorage.removeItem('namePageMakeTransfer');
             localStorage.removeItem('destWalletMakeTransfer');
-            localStorage.setItem('namePageMakeTransfer', item);
+            localStorage.removeItem('linkMakeTransfer');
+            localStorage.setItem('namePageMakeTransfer', item1);
+            localStorage.setItem('linkMakeTransfer', item2);
         },
     }
 }

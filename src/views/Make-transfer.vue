@@ -14,11 +14,11 @@
                         <form id="miForm" @submit="transfer">
                             <div class="form-group">
                                 <label for="destWallet">Destination Wallet</label>
-                                <div v-if="this.destWallet === ''">
+                                <div v-if="this.destWalletAssociated === null">
                                     <input name="destWallet" id="destWallet" type="text" class="form-control" placeholder="Destination Wallet" v-model="destWallet" required/>
                                 </div>
                                 <div v-else>
-                                    <input name="destWallet" id="destWallet" type="text" class="form-control" :placeholder="this.destWallet" disabled/>
+                                    <input name="destWallet" id="destWallet" type="text" class="form-control" :placeholder="this.destWalletAssociated" v-model="destWallet" disabled/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -61,13 +61,10 @@ export default {
             amount: null,
             password: '',                
             response: null,
-            link: '/wallet',
-            namePage: null,
+            link: localStorage.getItem('linkMakeTransfer'),
+            namePage: localStorage.getItem('namePageMakeTransfer'),
+            destWalletAssociated: localStorage.getItem('destWalletMakeTransfer')
         }
-    },
-    mounted() {
-        this.namePage = localStorage.getItem('namePageMakeTransfer');
-        this.destWallet = (localStorage.getItem('destWalletMakeTransfer') === null) ? '' : localStorage.getItem('destWalletMakeTransfer');
     },
     beforeCreate() {
         const pathWallet = '/wallet/find/all/' + localStorage.getItem('username');
@@ -94,6 +91,9 @@ export default {
     methods: {
         transfer(event) {
             const path = '/movement/send-money';
+            if(this.destWalletAssociated !== null) {
+                this.destWallet = this.destWalletAssociated;
+            }
             axios
                 .post(this.$store.state.backURL + path,
                     {

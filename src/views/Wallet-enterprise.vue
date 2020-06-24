@@ -39,7 +39,9 @@
                                     Show my history
                                     <span class="float-right">
                                         <router-link :to="{name: 'operations'}" class="btn btn-dark btn-sm">
-                                            Show
+                                            <span v-on:click="operationsEnterpriseWallet('/wallet-enterprise')">
+                                                Show
+                                            </span>
                                         </router-link>
                                     </span>
                                 </p>
@@ -178,6 +180,11 @@ export default {
             localStorage.setItem('wallettypeSignup', item1);
             localStorage.setItem('enterprise_idSignup', item2);
             localStorage.setItem('nameSignup', item3);
+        },
+        operationsEnterpriseWallet(item) {
+            localStorage.removeItem('usernameOperations');
+            localStorage.removeItem('linkOperations');
+            localStorage.setItem('linkOperations', item);
         }
     }
 }

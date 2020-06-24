@@ -104,15 +104,10 @@ export default {
             password: '',
             cPassword: '',
             response: null,
-            wtyp_id: null,
-            ent_id: null,
-            pageName: null,
+            wtyp_id: parseInt(localStorage.getItem('wallettypeSignup')),
+            ent_id: localStorage.getItem('enterprise_idSignup'),
+            pageName: localStorage.getItem('nameSignup'),
         }
-    },
-    mounted() {
-        this.wtyp_id = parseInt(localStorage.getItem('wallettypeSignup'));
-        this.ent_id = localStorage.getItem('enterprise_idSignup');
-        this.pageName = localStorage.getItem('nameSignup');
     },
     methods: {
         signUp(event) {

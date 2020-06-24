@@ -75,16 +75,13 @@ export default {
     data() {
         return {
             link: '/wallet-enterprise',
-            account: null,
+            account: localStorage.getItem('accountSetLimits'),
             state: null,
             movementLimit: null,
             monthLimith: null,
             password: '',
             response: null
         }
-    },
-    mounted() {
-        this.account = localStorage.getItem('accountSetLimits');
     },
     methods: {
         update(event) {
