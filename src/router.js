@@ -10,6 +10,7 @@ import Operations from './views/Operations'
 import WalletEnterprise from './views/Wallet-enterprise'
 import SetLimits from './views/Set-limits.vue'
 import AssociatedWallets from './views/Associated-wallets.vue'
+import Settings from './views/Settings.vue'
 
 Vue.use(Router);
 
@@ -88,7 +89,14 @@ const router = new Router({
             path: '/associated-wallets',
             name: 'associatedWallets',
             component: AssociatedWallets,
-            props: true,
+            meta: {
+                auth: true
+            }
+        },
+        {
+            path: '/settings',
+            name: 'settings',
+            component: Settings,
             meta: {
                 auth: true
             }

@@ -20,7 +20,7 @@
                         <form @submit="update">
                             <div class="form-group">
                                 <label for="account">Account</label>
-                                <input name="account" id="account" type="text" class="form-control" :placeholder="this.account" disabled required/>
+                                <input name="account" id="account" type="text" class="form-control" v-model="account" placeholder="Account" disabled required/>
                             </div>
                             <div class="form-group">
                                 <label for="state">State</label>
@@ -87,23 +87,24 @@ export default {
         update(event) {
             const path = '/wallet/edit/' + this.user.possess.Usr_username + '/' + this.account
             
-            axios.put(this.$store.state.backURL + path,
-                {
-                    state: this.state,
-                    new_movement_limit: this.movementLimit,
-                    new_month_limit: this.monthLimith,
-                    password: this.password,
-                },
-                {
-                    headers: {
-                        'access-token': localStorage.getItem('token')
-                    } 
-                }
+            axios
+                .put(this.$store.state.backURL + path,
+                    {
+                        state: this.state,
+                        new_movement_limit: this.movementLimit,
+                        new_month_limit: this.monthLimith,
+                        password: this.password,
+                    },
+                    {
+                        headers: {
+                            'access-token': localStorage.getItem('token')
+                        } 
+                    }
                 ).then(response => {
                     if(response.status !== 200) {
                             alert("Wallet status update error");
                         } else {
-                            alert("Wallet status update correctly");
+                            alert("Wallet status updated correctly");
                         }
                 }).catch(error => {
                     if(error.response.status !== 200){

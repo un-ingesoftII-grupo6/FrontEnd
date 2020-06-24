@@ -30,11 +30,7 @@
                             You can send money in a very easy way, all you will need is the destination 
                             wallet number and your password, of course, for more security!
                         </p>
-                        <router-link :to="{name: 'makeTransfer'}" class="btn btn-dark">
-                            <span v-on:click="maketransfer('Make Transfer', '/wallet')">
-                                Send
-                            </span>
-                        </router-link>
+                        <a v-on:click="maketransfer('Make Transfer', '/wallet')" href="/make-transfer" class="btn btn-dark">Send</a>
                     </div>
                 </div>
             </div>
@@ -66,9 +62,7 @@
                             and also in the form of a graph for more control and security.
                         </p>
                         <span class="float-left">
-                                <router-link :to="{name: 'operations'}" class="btn btn-dark">
-                                    Operations
-                                </router-link>
+                                <a v-on:click="operationsWallet('/wallet')" href="/operations" class="btn btn-dark">Operations</a>
                             </span>
                     </div>
                 </div>
@@ -129,6 +123,11 @@ export default {
             localStorage.setItem('namePageMakeTransfer', item1);
             localStorage.setItem('linkMakeTransfer', item2);
         },
+        operationsWallet(item) {
+            localStorage.removeItem('usernameOperations');
+            localStorage.removeItem('linkOperations');
+            localStorage.setItem('linkOperations', item);
+        }
     }
 }
 </script>

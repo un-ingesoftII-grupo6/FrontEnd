@@ -58,7 +58,7 @@
                                         </span>
                                         <input name="password" id="inputPassword" :type="passwordFieldType1" class="form-control"
                                             placeholder="Password" v-model="password" required/>
-                                        <button v-on:click.prevent="generatePassword" class="btn btn-info btn-sm" style="margin-top: .6em;">Generate</button>
+                                        <button v-on:click.prevent="generatePassword" class="btn btn-info btn-sm" style="margin-top: .6em;"><em class="fas fa-key"/> Generate</button>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -128,6 +128,7 @@ export default {
     methods: {
         signUp(event) {
             if(this.password !== this.cPassword){
+                alert('The passwords are not the same');
                 event.preventDefault( );
                 return;
             }
@@ -179,13 +180,13 @@ export default {
         },
         generatePassword() {
             this.password = generator.generate({
-                length: 10,
-                numbers: true
+                length: 20,
+                numbers: true,
+                strict: true
             })
 
             this.cPassword = this.password;
         }
-
     },
 }
 </script>

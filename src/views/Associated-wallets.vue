@@ -30,25 +30,13 @@
                                                     </label>
                                                 <span v-if="typePage === 'manage'">
                                                     <span class="float-right">
-                                                        <router-link class="btn btn-dark" :to="{name: 'setLimits'}">
-                                                            <span v-on:click="setlimits(item.Wal_id)">
-                                                                Set State
-                                                            </span>
-                                                        </router-link>
-                                                        <router-link id="button" :to="{name: 'makeTransfer'}" class="btn btn-dark">
-                                                            <span v-on:click="addfunds('Add Funds', item.Wal_id, '/wallet-enterprise')">
-                                                                Add Funds
-                                                            </span>
-                                                        </router-link>
+                                                        <a v-on:click="setlimits(item.Wal_id)" href="/set-limits" class="btn btn-dark">Set State</a>
+                                                        <a v-on:click="addfunds('Add Funds', item.Wal_id, '/wallet-enterprise')" href="/make-transfer" class="btn btn-dark" style="margin-left: .8em;">Add Funds</a>
                                                     </span> 
                                                 </span>
                                                 <span v-else-if="typePage === 'history'">
                                                     <span class="float-right">
-                                                        <router-link class="btn btn-dark" :to="{name: 'operations'}">
-                                                            <span v-on:click="operationsWalletAssociated(item.possess.Usr_username, '/wallet-enterprise')">
-                                                                History
-                                                            </span>
-                                                        </router-link>
+                                                        <a v-on:click="operationsWalletAssociated(item.possess.Usr_username, '/wallet-enterprise')" href="/operations" class="btn btn-dark">History</a>
                                                     </span>
                                                 </span>                           
                                             </div>                               
@@ -90,18 +78,8 @@ export default {
             link: '/wallet-enterprise',
             accounts: null,
             response: null,
-            typePage: null
+            typePage: localStorage.getItem('typePageAW')
         }
-    },
-    props: {
-        typePageProp: {
-            type: String,
-            required: true,
-            default: localStorage.getItem('typePageAW')
-        }
-    },
-    mounted() {
-        this.typePage = this.typePageProp;
     },
     beforeCreate() {
         const path = '/enterprise/find/managed/' + localStorage.getItem('username');

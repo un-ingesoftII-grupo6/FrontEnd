@@ -38,11 +38,7 @@
                                 <p class="card-text">                  
                                     Show my history
                                     <span class="float-right">
-                                        <router-link :to="{name: 'operations'}" class="btn btn-dark btn-sm">
-                                            <span v-on:click="operationsEnterpriseWallet('/wallet-enterprise')">
-                                                Show
-                                            </span>
-                                        </router-link>
+                                        <a v-on:click="operationsEnterpriseWallet('/wallet-enterprise')" href="/operations" class="btn btn-dark btn-sm">Show</a>
                                     </span>
                                 </p>
                             </li>
@@ -52,11 +48,7 @@
                                 <p class="card-text">
                                     Show history of my associated wallets
                                     <span class="float-right">
-                                        <router-link class="btn btn-dark btn-sm" :to="{name: 'associatedWallets', params: {typePageProp: 'history'}}">
-                                            <span v-on:click="associatedWallets('history')">
-                                                Show
-                                            </span>
-                                        </router-link>
+                                        <a v-on:click="associatedWallets('history')" href="/associated-wallets" class="btn btn-dark btn-sm">Show</a>
                                     </span>
                                 </p>
                             </li>
@@ -94,11 +86,7 @@
                                     <p class="card-text">                  
                                         Manage associated wallets
                                         <span class="float-right">
-                                            <router-link :to="{name: 'associatedWallets', params: {typePageProp: 'manage'}}" class="btn btn-dark btn-sm">
-                                                <span v-on:click="associatedWallets('manage')">
-                                                    Manage
-                                                </span>
-                                            </router-link>
+                                            <a v-on:click="associatedWallets('manage')" href="/associated-wallets" class="btn btn-dark btn-sm">Manage</a>
                                         </span>
                                     </p>
                                 </li>
@@ -108,11 +96,7 @@
                                     <p class="card-text">
                                         Create associated wallets
                                         <span class="float-right">
-                                            <router-link class="btn btn-dark btn-sm" :to="{name: 'signup'}">
-                                                <span v-on:click="signup(3, wallet.wallets[0].Ent_id, 'Create Associated Wallet')">
-                                                    Create
-                                                </span>
-                                            </router-link>
+                                            <a v-on:click="signup(3, wallet.wallets[0].Ent_id, 'Create Associated Wallet')" href="/signup" class="btn btn-dark btn-sm">Create</a>
                                         </span>
                                     </p>
                                 </li>
