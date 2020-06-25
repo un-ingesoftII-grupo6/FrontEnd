@@ -30,7 +30,7 @@
                                                     </label>
                                                 <span v-if="typePage === 'manage'">
                                                     <span class="float-right">
-                                                        <a v-on:click="setlimits(item.Wal_id)" href="/set-limits" class="btn btn-dark">Set State</a>
+                                                        <a v-on:click="setlimits(item.Wal_id, item.possess.Usr_username)" href="/set-limits" class="btn btn-dark">Set State</a>
                                                         <a v-on:click="addfunds('Add Funds', item.Wal_id, '/wallet-enterprise')" href="/make-transfer" class="btn btn-dark" style="margin-left: .8em;">Add Funds</a>
                                                     </span> 
                                                 </span>
@@ -104,9 +104,11 @@ export default {
             });
     },
     methods: {
-        setlimits(item) {
+        setlimits(item, item2) {
             localStorage.removeItem('accountSetLimits');
+            localStorage.getItem('userSetLimits');
             localStorage.setItem('accountSetLimits', item);
+            localStorage.setItem('userSetLimits', item2);
         },
         addfunds(item1, item2, item3) {
             localStorage.removeItem('namePageMakeTransfer');

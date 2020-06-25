@@ -76,6 +76,7 @@ export default {
         return {
             link: '/wallet-enterprise',
             account: localStorage.getItem('accountSetLimits'),
+            user: localStorage.getItem('userSetLimits'),
             state: null,
             movementLimit: null,
             monthLimith: null,
@@ -85,7 +86,7 @@ export default {
     },
     methods: {
         update(event) {
-            const path = '/wallet/edit/' + this.user.possess.Usr_username + '/' + this.account
+            const path = '/wallet/edit/' + this.user + '/' + this.account
             
             axios
                 .put(this.$store.state.backURL + path,
